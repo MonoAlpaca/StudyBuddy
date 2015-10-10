@@ -7,9 +7,9 @@
     tools:context=".MainActivity$PlaceholderFragment">
 
     <Button
-        android:layout_width="15dp"
+        android:layout_width="50dp"
         android:text="@string/button_test"
-        android:layout_height="15dp" />
+        android:layout_height="50dp" />
     <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
