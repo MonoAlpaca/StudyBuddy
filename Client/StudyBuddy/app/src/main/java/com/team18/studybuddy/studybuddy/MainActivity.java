@@ -62,6 +62,10 @@ public class MainActivity extends ActionBarActivity
                 Intent i =  new Intent(MainActivity.this, Settings.class);
                 startActivity(i);
                 break;
+/*            case 4:
+                Intent j = new Intent(MainActivity.this, About.class);
+                startActivity(j);
+                break;*/
             default:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))

@@ -25,12 +25,13 @@
     <PreferenceCategory
         android:title="User Settings"
         android:key="settingsUser">
-        <!-- TODO: is there a way to import block list into a multiselectlistpreference?-->
+        <!-- TODO: is there a way to import block list into a multi select list preference?-->
         <MultiSelectListPreference
             android:title="Block List"
             android:summary="Manage blocked users"
             android:entries="@array/colorArray"
-            android:entryValues="@array/colorValues"/>
+            android:entryValues="@array/colorValues"
+            android:key="settingsBlockList"/>
 
         <Preference
             android:title="Logout"
@@ -49,10 +50,12 @@
         android:key="settingsOther">
         <EditTextPreference
             android:title="Feedback"
-            android:summary="Tell the developers what you think!"/>
+            android:summary="Tell the developers what you think!"
+            android:key="settingsFeedback"/>
 
-        <SwitchPreference
+        <Preference
             android:title="About"
-            android:summary="A bit about StudyBuddy"/>
+            android:summary="A bit about StudyBuddy"
+            android:key="settingsAbout"/>
     </PreferenceCategory>
 </PreferenceScreen>
