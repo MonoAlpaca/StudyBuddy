@@ -17,12 +17,25 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
-    <string-array name="listArray">
-        <item>Headings</item>
-        <item>Headings and Details</item>
-        <item>All Data</item>
+    <string-array name="colorArray">
+        <item>Default</item>
+        <item>Purdue Gold</item>
+        <item>Purdue Black</item>
+        <item>Black and White</item>
     </string-array>
-    <string-array name="listValues">
+    <string-array name="colorValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="notificationArray">
+        <item>Allow Notifications from Courses</item>
+        <item>Allow Notifications from Chat</item>
+        <item>Allow Notifications in the Taskbar</item>
+    </string-array>
+    <string-array name="notificationValues">
         <item>1</item>
         <item>2</item>
         <item>3</item>

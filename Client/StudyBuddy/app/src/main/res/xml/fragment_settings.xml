@@ -1,16 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:title="Your Name"
-        android:key="username"
-        android:summary="Please provide your username"></EditTextPreference>
-    <CheckBoxPreference android:title="Application Updates"
-        android:defaultValue="false"
-        android:summary="This option if selected will allow the application to check for latest versions."
-        android:key="applicationUpdates" />
-    <ListPreference     android:title="Download Details"
-        android:summary="Select the kind of data that you would like to download"
-        android:key="downloadType"
-        android:defaultValue="1"
-        android:entries="@array/listArray"
-        android:entryValues="@array/listValues" />
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".Settings">
+    <PreferenceCategory
+        android:title="General Settings"
+        android:key="genSettings">
+        <ListPreference
+            android:title="Theme"
+            android:summary="Change the StudyBuddy theme"
+            android:key="theme"
+            android:defaultValue="1"
+            android:entries="@array/colorArray"
+            android:entryValues="@array/colorValues" />
+
+        <MultiSelectListPreference
+            android:key="notifications"
+            android:title="Notifications"
+            android:summary="Change notification settings"
+            android:entries="@array/notificationArray"
+            android:entryValues="@array/notificationValues"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="User Settings"
+        android:key="settingsUser">
+        <!-- TODO: is there a way to import block list into a multiselectlistpreference?-->
+        <MultiSelectListPreference
+            android:title="Block List"
+            android:summary="Manage blocked users"
+            android:entries="@array/colorArray"
+            android:entryValues="@array/colorValues"/>
+
+        <Preference
+            android:title="Logout"
+            android:summary="Log out of current account"
+            android:key="settingsLogout"/>
+
+        <Preference
+            android:title="Reset"
+            android:key="settingsReset"
+            android:summary="Reset all user data"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="Other"
+        android:key="settingsOther">
+        <EditTextPreference
+            android:title="Feedback"
+            android:summary="Tell the developers what you think!"/>
+
+        <SwitchPreference
+            android:title="About"
+            android:summary="A bit about StudyBuddy"/>
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -98,9 +98,6 @@ public class MainActivity extends ActionBarActivity
             case 7:
                 mTitle = getString(R.string.title_section7);
                 break;
-
-
-
         }
     }
 
