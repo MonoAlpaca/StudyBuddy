@@ -1,0 +1,29 @@
+from django.db import models
+from datetime import datetime;
+
+class Course(models.Model):
+    name = models.CharField(max_length=20)
+    def __str__(self):
+        return self.name
+
+class Interest(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+
+class User(models.Model):
+    year_choices = (
+            ('FR', 'Freshman'),
+            ('SO', 'Sophomore'),
+            ('JR', 'Junior'),
+            ('SR', 'Senior'),
+            ('GR', 'Graduate'),
+        )
+    username = models.CharField(max_length=50)
+    year = models.CharField(default='FR', max_length=2, choices=year_choices)
+    bio = models.CharField(default='', max_length=500)
+    courses = models.ManyToManyField(Course)
+    interests = models.ManyToManyField(Interest)
+    def __str__(self):
+        return self.username
+
