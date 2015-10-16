@@ -62,10 +62,11 @@ public class MainActivity extends ActionBarActivity
                 Intent i =  new Intent(MainActivity.this, Settings.class);
                 startActivity(i);
                 break;
-/*            case 4:
-                Intent j = new Intent(MainActivity.this, About.class);
-                startActivity(j);
-                break;*/
+            case 4:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, About.newInstance(position + 1))
+                        .commit();
+                break;
             default:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -73,10 +74,6 @@ public class MainActivity extends ActionBarActivity
                 break;
 
         }
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
-
     }
 
     public void onSectionAttached(int number) {
@@ -170,6 +167,9 @@ public class MainActivity extends ActionBarActivity
             switch(getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+                    break;
+                case 5:
+                    rootView = inflater.inflate(R.layout.fragment_about, container, false);
                     break;
                 default:
                     rootView = inflater.inflate(R.layout.fragment_main, container, false);

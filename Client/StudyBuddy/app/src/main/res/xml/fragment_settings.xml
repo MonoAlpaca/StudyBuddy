@@ -3,8 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context=".Settings">
     <PreferenceCategory
+        android:title="Notification Settings"
+        android:key="settingsNotification">
+
+        <CheckBoxPreference
+            android:title="Allow Notifications from Courses"
+            android:key="settingsNotificationCourses" />
+        <CheckBoxPreference
+            android:title="Allow Notifications from Chat"
+            android:key="settingsNotificationChat" />
+        <CheckBoxPreference
+            android:title="Allow Notifications in the Taskbar"
+            android:key="settingsNotificationTaskbar" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="General Settings"
-        android:key="genSettings">
+        android:key="settingsGeneral">
+
         <ListPreference
             android:title="Theme"
             android:summary="Change the StudyBuddy theme"
@@ -13,24 +30,9 @@
             android:entries="@array/colorArray"
             android:entryValues="@array/colorValues" />
 
-        <MultiSelectListPreference
-            android:key="notifications"
-            android:title="Notifications"
-            android:summary="Change notification settings"
-            android:entries="@array/notificationArray"
-            android:entryValues="@array/notificationValues"/>
-    </PreferenceCategory>
-
-
-    <PreferenceCategory
-        android:title="User Settings"
-        android:key="settingsUser">
-        <!-- TODO: is there a way to import block list into a multi select list preference?-->
-        <MultiSelectListPreference
+        <Preference
             android:title="Block List"
             android:summary="Manage blocked users"
-            android:entries="@array/colorArray"
-            android:entryValues="@array/colorValues"
             android:key="settingsBlockList"/>
 
         <Preference
@@ -48,7 +50,7 @@
     <PreferenceCategory
         android:title="Other"
         android:key="settingsOther">
-        <EditTextPreference
+        <Preference
             android:title="Feedback"
             android:summary="Tell the developers what you think!"
             android:key="settingsFeedback"/>
