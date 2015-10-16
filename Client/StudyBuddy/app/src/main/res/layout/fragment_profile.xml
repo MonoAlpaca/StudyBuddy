@@ -14,20 +14,22 @@
 
 
     <ImageButton
-        android:layout_width="37dp"
-        android:layout_height="31dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/editPictureButton"
         android:src="@drawable/editicon"
         android:onClick="switchToEditPicture"
+        android:background="@android:color/transparent"
         android:layout_row="0"
         android:layout_column="1" />
 
     <ImageButton
-        android:layout_width="37dp"
-        android:layout_height="31dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/editProfileButton1"
         android:src="@drawable/editicon"
         android:onClick="switchToEditProfile"
+        android:background="@android:color/transparent"
         android:layout_row="0"
         android:layout_column="3" />
 
@@ -51,23 +53,24 @@
         android:layout_columnSpan="1" />
 
     <ImageButton
-        android:layout_width="37dp"
-        android:layout_height="31dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/editProfileButton2"
         android:src="@drawable/editicon"
         android:onClick="switchToEditProfile"
+        android:background="@android:color/transparent"
         android:layout_row="1"
         android:layout_column="1"
         android:layout_rowSpan="2" />
 
     <TextView
-        android:layout_width="132dp"
+        android:layout_width="314dp"
         android:layout_height="100dp"
         android:text="bio text here"
         android:id="@+id/profileBio"
         android:layout_row="2"
         android:layout_column="0"
-        android:layout_columnSpan="7" />
+        android:layout_columnSpan="8" />
 
     <TextView
         android:layout_width="69dp"
@@ -80,11 +83,12 @@
         android:layout_columnSpan="1" />
 
     <ImageButton
-        android:layout_width="37dp"
-        android:layout_height="31dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/addCoursesButton"
         android:src="@drawable/editicon"
         android:onClick="switchToClasses"
+        android:background="@android:color/transparent"
         android:layout_row="3"
         android:layout_column="1"
         android:layout_rowSpan="2" />
@@ -96,7 +100,7 @@
         android:id="@+id/profileCourses"
         android:layout_row="4"
         android:layout_column="0"
-        android:layout_columnSpan="7" />
+        android:layout_columnSpan="8" />
 
     <TextView
         android:layout_width="70dp"
@@ -109,11 +113,12 @@
         android:layout_columnSpan="1" />
 
     <ImageButton
-        android:layout_width="37dp"
-        android:layout_height="31dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/editProfileButton3"
         android:src="@drawable/editicon"
         android:onClick="switchToEditProfile"
+        android:background="@android:color/transparent"
         android:layout_row="5"
         android:layout_column="1"
         android:layout_rowSpan="2" />
@@ -125,7 +130,7 @@
         android:id="@+id/profileInterests"
         android:layout_row="6"
         android:layout_column="0"
-        android:layout_columnSpan="7" />
+        android:layout_columnSpan="8" />
 
 </GridLayout>
 

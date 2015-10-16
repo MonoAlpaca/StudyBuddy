@@ -21,8 +21,8 @@ public class Feedback extends Fragment{
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static About newInstance(int sectionNumber) {
-        About fragment = new About();
+    public static Feedback newInstance(int sectionNumber) {
+        Feedback fragment = new Feedback();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
