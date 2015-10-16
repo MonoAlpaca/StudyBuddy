@@ -17,4 +17,35 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="aboutText">\n StudyBuddy was created by Andy Chen, Abhijay Gupta, Joseph Miller,
+        Nathan Scott, and Zeb Wezensky for Prof. Dunsmore\'s Fall 2015 CS307 course.</string>
+    <string name="descriptionText">StudyBuddy is meant to match Purdue students to each
+        other by allowing users to choose courses they are enrolled in and matching them.
+        The matched students can then communicate to each other through a chat system and
+        meet up in real life to study together. \n</string>
+
+    <string-array name="colorArray">
+        <item>Default</item>
+        <item>Purdue Gold</item>
+        <item>Purdue Black</item>
+        <item>Black and White</item>
+    </string-array>
+    <string-array name="colorValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="notificationArray">
+        <item>Allow Notifications from Courses</item>
+        <item>Allow Notifications from Chat</item>
+        <item>Allow Notifications in the Taskbar</item>
+    </string-array>
+    <string-array name="notificationValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>
