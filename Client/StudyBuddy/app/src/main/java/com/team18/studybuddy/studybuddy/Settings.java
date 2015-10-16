@@ -19,4 +19,6 @@ public class Settings extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.fragment_settings);
     }
+
+
 }

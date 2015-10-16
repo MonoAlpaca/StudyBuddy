@@ -19,8 +19,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="General Settings"
-        android:key="settingsGeneral">
+        android:title="User Settings"
+        android:key="settingsUser">
 
         <ListPreference
             android:title="Theme"
@@ -44,20 +44,5 @@
             android:title="Reset"
             android:key="settingsReset"
             android:summary="Reset all user data"/>
-    </PreferenceCategory>
-
-
-    <PreferenceCategory
-        android:title="Other"
-        android:key="settingsOther">
-        <Preference
-            android:title="Feedback"
-            android:summary="Tell the developers what you think!"
-            android:key="settingsFeedback"/>
-
-        <Preference
-            android:title="About"
-            android:summary="A bit about StudyBuddy"
-            android:key="settingsAbout"/>
     </PreferenceCategory>
 </PreferenceScreen>
