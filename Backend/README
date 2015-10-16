@@ -1,0 +1,21 @@
+To make api calls!
+
+the server address is http://gmmotto.ddns.net
+the app is at /app
+
+to access the database/admin functions, go to
+http://gmmotto.ddns.net/app/admin
+the username is admin and the password is password
+
+to make api calls
+
+example
+
+http://gmmotto.ddns.net/app/getUserInfo?username=mill1630
+
+that will return a json object representing the info we have for the user.
+
+check out views.py for the list of functions supported, the request.GET.get
+are the arguments that we want.
+
+More formal documentation to come.

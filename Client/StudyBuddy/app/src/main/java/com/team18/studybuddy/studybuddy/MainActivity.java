@@ -46,6 +46,12 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
+ /*       Intent i = new Intent(MainActivity.this, CASClient.class);
+        startActivity(i);
+       FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .commit();*/
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch(position){
             case 0:
@@ -61,9 +67,15 @@ public class MainActivity extends ActionBarActivity
                 Intent i = new Intent(MainActivity.this, Settings.class);
                 startActivity(i);
                 break;
-/*            case 4:
-                Intent j = new Intent(MainActivity.this, About.class);
-                startActivity(j);
+            case 4:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, About.newInstance(position + 1))
+                        .commit();
+                break;
+/*            case 5:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Feedback.newInstance(position + 1))
+                        .commit();
                 break;*/
             default:
                 fragmentManager.beginTransaction()
@@ -72,10 +84,6 @@ public class MainActivity extends ActionBarActivity
                 break;
 
         }
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
-
     }
 
     public void switchToClasses(View view){
@@ -174,6 +182,12 @@ public class MainActivity extends ActionBarActivity
             switch(getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+                    break;
+                case 5:
+                    rootView = inflater.inflate(R.layout.fragment_about, container, false);
+                    break;
+                case 6:
+                    rootView = inflater.inflate(R.layout.fragment_feedback, container, false);
                     break;
                 default:
                     rootView = inflater.inflate(R.layout.fragment_main, container, false);

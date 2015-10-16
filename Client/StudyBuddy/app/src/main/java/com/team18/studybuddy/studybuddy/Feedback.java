@@ -1,9 +1,8 @@
 package com.team18.studybuddy.studybuddy;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,7 @@ import android.view.ViewGroup;
 /**
  * Created by Nathan on 10/15/2015.
  */
-
-public class About extends Fragment {
+public class Feedback extends Fragment{
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -36,7 +34,7 @@ public class About extends Fragment {
                              Bundle savedInstanceState) {
         View rootView;
 
-        rootView = inflater.inflate(R.layout.fragment_about, container, false);
+        rootView = inflater.inflate(R.layout.fragment_feedback, container, false);
         return rootView;
     }
 
