@@ -67,6 +67,11 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, About.newInstance(position + 1))
                         .commit();
                 break;
+/*            case 5:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Feedback.newInstance(position + 1))
+                        .commit();
+                break;*/
             default:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -170,6 +175,9 @@ public class MainActivity extends ActionBarActivity
                     break;
                 case 5:
                     rootView = inflater.inflate(R.layout.fragment_about, container, false);
+                    break;
+                case 6:
+                    rootView = inflater.inflate(R.layout.fragment_feedback, container, false);
                     break;
                 default:
                     rootView = inflater.inflate(R.layout.fragment_main, container, false);
