@@ -1,6 +1,7 @@
 package com.team18.studybuddy.studybuddy;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -53,7 +54,7 @@ public class MainActivity extends ActionBarActivity
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();*/
         FragmentManager fragmentManager = getSupportFragmentManager();
-        switch(position){
+        switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, ProfileFrag.newInstance(position + 1))
@@ -72,11 +73,11 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, About.newInstance(position + 1))
                         .commit();
                 break;
-/*            case 5:
+            case 5:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, Feedback.newInstance(position + 1))
                         .commit();
-                break;*/
+                break;
             default:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -84,12 +85,27 @@ public class MainActivity extends ActionBarActivity
                 break;
 
         }
+
     }
 
-    public void switchToClasses(View view){
+    public void switchToClasses(View view) {
         Intent j = new Intent(this, Courses.class);
         startActivity(j);
     }
+
+    public void switchToEditPicture(View view) {
+        Fragment editFrag = new EditPictureFrag();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.container, EditPictureFrag.newInstance(0)).commit();
+    }
+
+    public void switchToEditProfile(View view) {
+        Fragment editFrag = new EditProfileFrag();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.container, EditProfileFrag.newInstance(0)).commit();
+    }
+
+
 
     public void onSectionAttached(int number) {
         switch (number) {
@@ -179,22 +195,10 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView;
-            switch(getArguments().getInt(ARG_SECTION_NUMBER)){
-                case 1:
-                    rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-                    break;
-                case 5:
-                    rootView = inflater.inflate(R.layout.fragment_about, container, false);
-                    break;
-                case 6:
-                    rootView = inflater.inflate(R.layout.fragment_feedback, container, false);
-                    break;
-                default:
-                    rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-                    break;
+            rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-            }
+
             return rootView;
         }
 
