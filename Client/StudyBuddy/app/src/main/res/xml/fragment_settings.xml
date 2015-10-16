@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".Settings">
+    <PreferenceCategory
+        android:title="General Settings"
+        android:key="genSettings">
+        <ListPreference
+            android:title="Theme"
+            android:summary="Change the StudyBuddy theme"
+            android:key="theme"
+            android:defaultValue="1"
+            android:entries="@array/colorArray"
+            android:entryValues="@array/colorValues" />
+
+        <MultiSelectListPreference
+            android:key="notifications"
+            android:title="Notifications"
+            android:summary="Change notification settings"
+            android:entries="@array/notificationArray"
+            android:entryValues="@array/notificationValues"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="User Settings"
+        android:key="settingsUser">
+        <!-- TODO: is there a way to import block list into a multi select list preference?-->
+        <MultiSelectListPreference
+            android:title="Block List"
+            android:summary="Manage blocked users"
+            android:entries="@array/colorArray"
+            android:entryValues="@array/colorValues"
+            android:key="settingsBlockList"/>
+
+        <Preference
+            android:title="Logout"
+            android:summary="Log out of current account"
+            android:key="settingsLogout"/>
+
+        <Preference
+            android:title="Reset"
+            android:key="settingsReset"
+            android:summary="Reset all user data"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="Other"
+        android:key="settingsOther">
+        <EditTextPreference
+            android:title="Feedback"
+            android:summary="Tell the developers what you think!"
+            android:key="settingsFeedback"/>
+
+        <Preference
+            android:title="About"
+            android:summary="A bit about StudyBuddy"
+            android:key="settingsAbout"/>
+    </PreferenceCategory>
+</PreferenceScreen>
