@@ -6,18 +6,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity
@@ -55,11 +50,15 @@ public class MainActivity extends ActionBarActivity
         switch(position){
             case 0:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .replace(R.id.container, ProfileFrag.newInstance(position + 1))
                         .commit();
                 break;
+            case 1:
+                Intent c = new Intent(MainActivity.this, Courses.class);
+                startActivity(c);
+                break;
             case 3:
-                Intent i =  new Intent(MainActivity.this, Settings.class);
+                Intent i = new Intent(MainActivity.this, Settings.class);
                 startActivity(i);
                 break;
 /*            case 4:
@@ -77,6 +76,11 @@ public class MainActivity extends ActionBarActivity
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
 
+    }
+
+    public void switchToClasses(View view){
+        Intent j = new Intent(this, Courses.class);
+        startActivity(j);
     }
 
     public void onSectionAttached(int number) {
