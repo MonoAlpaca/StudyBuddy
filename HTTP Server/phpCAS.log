@@ -1,0 +1,27 @@
+8AAA .START phpCAS-1.2.2 ****************** [CAS.php:478]
+8AAA .=> phpCAS::client('2.0', 'www.purdue.edu', 443, '/apps/account/cas') [index.php:6]
+8AAA .|    => CAS_Client::__construct('2.0', false, 'www.purdue.edu', 443, '/apps/account/cas', true) [CAS.php:379]
+8AAA .|    |    Starting a new session [Client.php:710]
+8AAA .|    <= ''
+8AAA .<= ''
+8AAA .=> phpCAS::setNoCasServerValidation() [index.php:9]
+8AAA .<= ''
+8AAA .=> phpCAS::forceAuthentication() [index.php:11]
+8AAA .|    => CAS_Client::forceAuthentication() [CAS.php:1081]
+8AAA .|    |    => CAS_Client::isAuthenticated() [Client.php:962]
+8AAA .|    |    |    => CAS_Client::wasPreviouslyAuthenticated() [Client.php:1058]
+8AAA .|    |    |    |    no user found [Client.php:1239]
+8AAA .|    |    |    <= false
+8AAA .|    |    |    no ticket found [Client.php:1120]
+8AAA .|    |    <= false
+8AAA .|    |    => CAS_Client::redirectToCas(false) [Client.php:971]
+8AAA .|    |    |    => CAS_Client::getServerLoginURL(false, false) [Client.php:1255]
+8AAA .|    |    |    |    => CAS_Client::getURL() [Client.php:356]
+8AAA .|    |    |    |    |    Final URI: http://127.0.0.1/ [Client.php:2886]
+8AAA .|    |    |    |    <= 'http://127.0.0.1/'
+8AAA .|    |    |    <= 'https://www.purdue.edu/apps/account/cas/login?service=http%3A%2F%2F127.0.0.1%2F'
+8AAA .|    |    |    Redirect to : https://www.purdue.edu/apps/account/cas/login?service=http%3A%2F%2F127.0.0.1%2F [Client.php:1257]
+8AAA .|    |    |    exit()
+8AAA .|    |    |    -
+8AAA .|    |    -
+8AAA .|    -
