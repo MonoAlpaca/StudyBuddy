@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             default:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .replace(R.id.container, Authentication.newInstance(position+1))
                         .commit();
                 break;
 

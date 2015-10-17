@@ -1,6 +1,12 @@
 package com.team18.studybuddy.studybuddy;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,7 +31,7 @@ import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 /**
  * Created by Alpaca on 10/14/2015.
  */
-public class Authentication {
+public class Authentication extends Fragment {
 
 
     private static final String TAG = "CASCLIENT";
@@ -42,7 +48,7 @@ public class Authentication {
      *  Usually provided by the user, as it is this client that will be "logged in" to
      *  the CAS server.
      */
-    private HttpClient httpClient;
+    private static HttpClient httpClient;
     /**
      * This is the "base url", or the root URL of the CAS server that is will be
      * providing authentication services. If you use <code>http://x.y.z/a/login</code> to login
@@ -201,7 +207,7 @@ public class Authentication {
         {
             List <NameValuePair> nvps = new ArrayList <NameValuePair> ();
             nvps.add(new BasicNameValuePair ("service", serviceUrl));
-            nvps.add(new BasicNameValuePair ("ticket", serviceTicket));
+            nvps.add(new BasicNameValuePair("ticket", serviceTicket));
             httpPost.setEntity (new UrlEncodedFormEntity(nvps));
             HttpResponse response = httpClient.execute (httpPost);
             Log.d (TAG, "VALIDATE RESPONSE : " + response.getStatusLine().toString());
@@ -249,7 +255,7 @@ public class Authentication {
         try
         {
             Log.d (TAG, "Ready to get LT from " + casBaseURL + CAS_LOGIN_URL_PART + "?service=" + serviceUrl);
-            HttpResponse response = httpClient.execute (httpGet);
+            HttpResponse response = httpClient.execute(httpGet);
             Log.d (TAG, "Response = " + response.getStatusLine().toString());
             if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
             {
@@ -260,7 +266,7 @@ public class Authentication {
                 HttpEntity entity = response.getEntity();
                 if (entity != null) lt = extractLt (entity.getContent());
                 entity.consumeContent();
-                Log.d (TAG, "LT=" + lt);
+                Log.d(TAG, "LT=" + lt);
             }
         }
         catch (ClientProtocolException e)
@@ -358,5 +364,23 @@ public class Authentication {
         }
         return token;
     }
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
+    public static Authentication newInstance(int sectionNumber) {
+        Authentication fragment = new Authentication(httpClient,null);
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView;
+        rootView = inflater.inflate(R.layout.authentication, container, false);
+
+        return rootView;
+    }
+
 
 }
