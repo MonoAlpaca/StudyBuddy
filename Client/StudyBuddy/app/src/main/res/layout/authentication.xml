@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical|center_horizontal">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to StudyBuddy!"
+        android:textSize="20dp"
+        android:id="@+id/welcomeMessage"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please login using your Purdue Career Account"
+        android:gravity="center"
+        android:id="@+id/loginMessage"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:hint="Purdue email"
+        android:id="@+id/purdueEmail"
+        android:selectAllOnFocus="true"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="Password"
+        android:id="@+id/purduePassword"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:text="Buddy!"
+        android:id="@+id/loginButton"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

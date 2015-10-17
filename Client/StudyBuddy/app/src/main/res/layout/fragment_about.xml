@@ -14,10 +14,9 @@
         android:padding="10dp" />
 
     <TextView
-        android:layout_width="358dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="@string/aboutText"
         android:id="@+id/textView"
-        android:layout_weight="0.21"
         android:padding="10dp" />
 </LinearLayout>

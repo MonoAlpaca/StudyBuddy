@@ -61,12 +61,16 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
             case 1:
-                Intent c = new Intent(MainActivity.this, Courses.class);
-                startActivity(c);
+                Intent classes = new Intent(MainActivity.this, CoursePage.class);
+                startActivity(classes);
+            case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Chat.newInstance(position + 1))
+                        .commit();
                 break;
             case 3:
-                Intent i = new Intent(MainActivity.this, Settings.class);
-                startActivity(i);
+                Intent settings = new Intent(MainActivity.this, Settings.class);
+                startActivity(settings);
                 break;
             case 4:
                 fragmentManager.beginTransaction()
@@ -92,7 +96,16 @@ public class MainActivity extends ActionBarActivity
         Intent j = new Intent(this, Courses.class);
         startActivity(j);
     }
+    public void whatever(View view) {
+        Intent k = new Intent(this, Chat.class);
+        startActivity(k);
+    }
 
+    public void switchToChatSession(View view){
+        Fragment chatSeshFrag = new ChatSessionFrag();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.container, ChatSessionFrag.newInstance(0)).commit();
+    }
     public void switchToEditPicture(View view) {
         Fragment editFrag = new EditPictureFrag();
         FragmentManager manager = getSupportFragmentManager();
@@ -104,8 +117,6 @@ public class MainActivity extends ActionBarActivity
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, EditProfileFrag.newInstance(0)).commit();
     }
-
-
 
     public void onSectionAttached(int number) {
         switch (number) {
@@ -195,6 +206,7 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView;
+
 
             rootView = inflater.inflate(R.layout.fragment_main, container, false);
 

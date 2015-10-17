@@ -18,6 +18,8 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="action_chat">Chat</string>
+
     <string name="aboutText">\n StudyBuddy was created by Andy Chen, Abhijay Gupta, Joseph Miller,
         Nathan Scott, and Zeb Wezensky for Prof. Dunsmore\'s Fall 2015 CS307 course.</string>
     <string name="descriptionText">StudyBuddy is meant to match Purdue students to each
@@ -36,6 +38,18 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+    </string-array>
+
+    <string-array name="fillerArray">
+        <item>You: yo this app is amazing lol</item>
+        <item>A: i know brah this is literally the best thing ever</item>
+        <item>You: so youre in cs307?</item>
+        <item>A: yeah</item>
+        <item>You: wanna meet up at Lawson to discuss the project?</item>
+        <item>A: sure man</item>
+        <item>You: when you wanna be there?</item>
+        <item>A: 12:30?</item>
+        <item>You: sounds good see ya</item>
     </string-array>
 
 </resources>

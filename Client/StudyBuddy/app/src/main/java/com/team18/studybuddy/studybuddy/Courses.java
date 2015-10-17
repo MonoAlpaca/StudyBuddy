@@ -28,6 +28,7 @@ public class Courses extends Activity {
 
 
 
+
         //
         final AutoCompleteTextView subjectTextView = (AutoCompleteTextView) findViewById(R.id.subjectComplete);
         subjectTextView.setAdapter(new SuggestionAdapter(this, R.layout.simple_dropdown_item_2line, R.id.text1));
