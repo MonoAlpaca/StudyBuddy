@@ -61,12 +61,12 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
             case 1:
-                Intent c = new Intent(MainActivity.this, Courses.class);
-                startActivity(c);
+                Intent classes = new Intent(MainActivity.this, CoursePage.class);
+                startActivity(classes);
                 break;
             case 3:
-                Intent i = new Intent(MainActivity.this, Settings.class);
-                startActivity(i);
+                Intent settings = new Intent(MainActivity.this, Settings.class);
+                startActivity(settings);
                 break;
             case 4:
                 fragmentManager.beginTransaction()

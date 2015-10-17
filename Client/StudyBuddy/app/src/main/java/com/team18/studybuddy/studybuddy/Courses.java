@@ -22,11 +22,10 @@ public class Courses extends Activity {
     protected void onCreate(Bundle b) {
         super.onCreate(b);
         setContentView(R.layout.activity_courses);
-        //
+
         ArrayAdapter<String> a = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, courses);
         AutoCompleteTextView tv = (AutoCompleteTextView) findViewById(R.id.courseView);
         tv.setAdapter(a);
-        //
     }
 
 }

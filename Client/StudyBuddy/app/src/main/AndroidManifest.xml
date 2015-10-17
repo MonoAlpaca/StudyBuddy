@@ -29,6 +29,10 @@
             android:name=".Courses"
             android:label="Courses" >
         </activity>
+        <activity
+            android:name=".CoursePage"
+            android:label="CoursePage" >
+        </activity>
 
 
 
