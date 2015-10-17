@@ -8,21 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Nathan on 10/15/2015.
+ * Created by Zeb on 10/15/2015.
  */
-public class Feedback extends Fragment{
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
+public class EditPictureFrag extends Fragment {
+
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Feedback newInstance(int sectionNumber) {
-        Feedback fragment = new Feedback();
+    public static EditPictureFrag newInstance(int sectionNumber) {
+        EditPictureFrag fragment = new EditPictureFrag();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -33,8 +30,8 @@ public class Feedback extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView;
+        rootView = inflater.inflate(R.layout.fragment_editpicture, container, false);
 
-        rootView = inflater.inflate(R.layout.fragment_feedback, container, false);
         return rootView;
     }
 
@@ -44,4 +41,5 @@ public class Feedback extends Fragment{
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
+
 }
