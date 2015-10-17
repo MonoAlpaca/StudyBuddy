@@ -10,6 +10,9 @@
             android:title="Allow Notifications from Courses"
             android:key="settingsNotificationCourses" />
         <CheckBoxPreference
+            android:title="Allow Notifications from Interests"
+            android:key="settingsNotificationInterests" />
+        <CheckBoxPreference
             android:title="Allow Notifications from Chat"
             android:key="settingsNotificationChat" />
         <CheckBoxPreference

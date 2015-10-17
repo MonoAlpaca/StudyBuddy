@@ -1,5 +1,6 @@
 package com.team18.studybuddy.studybuddy;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -252,8 +253,9 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.action_chat) {
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.container, Chat.newInstance(0)).commit();
             return true;
         }
 

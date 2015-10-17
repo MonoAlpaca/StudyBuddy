@@ -58,6 +58,11 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                         .commit();
                 break;
+            case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Chat.newInstance(position + 1))
+                        .commit();
+                break;
             case 3:
                 Intent i =  new Intent(MainActivity.this, Settings.class);
                 startActivity(i);
@@ -79,6 +84,17 @@ public class MainActivity extends ActionBarActivity
                 break;
 
         }
+    }
+
+    public void whatever(View view) {
+        Intent k = new Intent(this, Chat.class);
+        startActivity(k);
+    }
+
+    public void switchToChatSession(View view){
+        Fragment chatSeshFrag = new ChatSessionFrag();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.container, ChatSessionFrag.newInstance(0)).commit();
     }
 
     public void onSectionAttached(int number) {
@@ -172,6 +188,9 @@ public class MainActivity extends ActionBarActivity
             switch(getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+                    break;
+                case 4:
+                    rootView = inflater.inflate(R.layout.fragment_chat, container, false);
                     break;
                 case 5:
                     rootView = inflater.inflate(R.layout.fragment_about, container, false);
