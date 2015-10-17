@@ -6,6 +6,7 @@
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search by course name (i.e. CS180)"
+        android:completionThreshold="1"
+        android:hint="Course name (i.e. CS180)"
         android:id="@+id/courseView" />
 </LinearLayout>
