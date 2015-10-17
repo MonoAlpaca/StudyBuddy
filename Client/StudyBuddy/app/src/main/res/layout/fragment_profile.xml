@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imageView"
+        android:id="@+id/profilePicture"
         android:src="@drawable/blankphoto"
         android:layout_row="0"
         android:layout_column="0" />
@@ -61,7 +61,8 @@
         android:background="@android:color/transparent"
         android:layout_row="1"
         android:layout_column="1"
-        android:layout_rowSpan="2" />
+        android:layout_rowSpan="2"
+        android:layout_gravity="top" />
 
     <TextView
         android:layout_width="314dp"
