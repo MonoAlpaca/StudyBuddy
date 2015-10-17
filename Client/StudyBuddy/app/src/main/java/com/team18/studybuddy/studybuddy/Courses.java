@@ -29,10 +29,14 @@ public class Courses extends Activity {
 
 
         final DelayAutoCompleteTextView subjectTextView = (DelayAutoCompleteTextView) findViewById(R.id.subjectComplete);
-        subjectTextView.setThreshold(2);
+        subjectTextView.setThreshold(0);
         subjectTextView.setAdapter(new SuggestionAdapter(this, R.layout.simple_dropdown_item_2line, R.id.text1)); // 'this' is Activity instance
+
         subjectTextView.setLoadingIndicator(
                 (android.widget.ProgressBar) findViewById(R.id.pb_loading_indicator));
+
+
+
         subjectTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -53,6 +57,9 @@ public class Courses extends Activity {
                 subjectTextView.setSelection(subjectTextView.getText().length());
             }
         });
+        subjectTextView.setText(" ");
+        subjectTextView.setText("");
+
         //
         /*final AutoCompleteTextView subjectTextView = (AutoCompleteTextView) findViewById(R.id.subjectComplete);
         subjectTextView.setAdapter(new SuggestionAdapter(this, R.layout.simple_dropdown_item_2line, R.id.text1));*/
