@@ -36,7 +36,9 @@ public class JsonParse {
     }
 
     public static boolean isAlpha(String str) {
-
+        if(str.isEmpty()) {
+            return true;
+        }
         return str.matches("[a-zA-Z]+");
     }
 
