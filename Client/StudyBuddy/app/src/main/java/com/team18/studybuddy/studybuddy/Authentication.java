@@ -150,7 +150,7 @@ public class Authentication{
                     Log.i(TAG, "Authentication to service '" + serviceUrl + "' successul for username '" + username + "'.");
             } catch (IOException e) {
                 Log.d(TAG, "IOException trying to login : " + e.getMessage());
-                throw new CasProtocolException("IOException trying to login : " + e.getMessage());
+                throw new CasProtocolException(e.getMessage());
             }
             return serviceTicket;
         }

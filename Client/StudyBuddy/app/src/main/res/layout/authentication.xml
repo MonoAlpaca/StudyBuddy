@@ -40,12 +40,27 @@
         android:hint="Password"
         android:id="@+id/purduePassword"
         android:layout_gravity="center"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:imeOptions="actionSend"/>
 
-    <Button
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:text="Buddy!"
-        android:id="@+id/loginButton"
-        android:layout_gravity="center_horizontal" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/loginLoad"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible" />
+
+        <Button
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:text="Buddy!"
+            android:id="@+id/loginButton"
+            android:layout_gravity="center_horizontal" />
+    </FrameLayout>
+
 </LinearLayout>
