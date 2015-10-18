@@ -36,7 +36,9 @@ public class JsonParse {
     }
 
     public static boolean isAlpha(String str) {
+
         if(str.isEmpty()) {
+
             return true;
         }
         return str.matches("[a-zA-Z]+");
@@ -53,8 +55,6 @@ public class JsonParse {
             if (!isAlpha(sName)) {
                 subject = sName.replaceAll("[\\s+0-9]","");
                 js = new URL("http://api.purdue.io/odata/Courses?%24filter=Subject/Abbreviation%20eq%20%27" + subject + "%27&%24orderby=Number%20asc");
-
-
 
             }
             URLConnection jc = js.openConnection();
@@ -74,7 +74,7 @@ public class JsonParse {
             String courseFull = subject;
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject r = jsonArray.getJSONObject(i);
-                if (!isAlpha(sName)) {
+                if (!isAlpha(sName)&& sName != "") {
                     courseFull = subject.toUpperCase();
                     courseFull = courseFull + " " + r.getString("Number");
                     ListData.add(new SuggestGetSet(courseFull, r.getString("Title")));
