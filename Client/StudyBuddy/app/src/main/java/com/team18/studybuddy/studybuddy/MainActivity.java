@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,13 +47,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
- /*       Intent i = new Intent(MainActivity.this, CASClient.class);
-        startActivity(i);
-       FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();*/
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (position) {
             case 0:
@@ -82,9 +77,13 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, Feedback.newInstance(position + 1))
                         .commit();
                 break;
+            case 6:
+                Intent auth = new Intent(MainActivity.this, CASClient.class);
+                startActivity(auth);
+                break;
             default:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, Authentication.newInstance(position+1))
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                         .commit();
                 break;
 
