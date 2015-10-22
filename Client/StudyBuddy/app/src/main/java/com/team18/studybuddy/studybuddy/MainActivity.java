@@ -3,17 +3,20 @@ package com.team18.studybuddy.studybuddy;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity
@@ -23,6 +26,7 @@ public class MainActivity extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    int count = 0;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -45,14 +49,29 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
+    public void onBackPressed() {
+        if(count == 0){
+            Toast.makeText(MainActivity.this, "Press one more time to go back", Toast.LENGTH_SHORT).show();
+
+        }
+        count++;
+        if(count == 2){
+            finish();
+            Intent auth = new Intent(MainActivity.this, CASClient.class);
+            startActivity(auth);
+        }
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                count = 0;
+            }
+        }, 2000);
+    }
+
+    @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
- /*       Intent i = new Intent(MainActivity.this, CASClient.class);
-        startActivity(i);
-       FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();*/
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (position) {
             case 0:
@@ -82,9 +101,14 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, Feedback.newInstance(position + 1))
                         .commit();
                 break;
+            case 6:
+                finish();
+                Intent auth = new Intent(MainActivity.this, CASClient.class);
+                startActivity(auth);
+                break;
             default:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, Authentication.newInstance(position+1))
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                         .commit();
                 break;
 

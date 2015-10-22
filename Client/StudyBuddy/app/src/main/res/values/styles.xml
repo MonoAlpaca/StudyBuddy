@@ -4,5 +4,26 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
+    <attr name="progressButtonStyle" format="reference" />
+
+    <declare-styleable name="ProgressButton">
+        <attr name="android:clickable" />
+        <attr name="android:focusable" />
+        <attr name="defaultBackgroundColor" format="color" />
+        <attr name="defaultFontSize" format="integer" />
+        <attr name="defaultFontColor" format="color" />
+        <attr name="defaultText" format="string" />
+    </declare-styleable>
+    <style name="ProgressButton" />
+
+    <!-- Base theme for the Progress button. -->
+    <style name="ProgressButton.attrs">
+        <item name="defaultBackgroundColor">@color/white_color</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="defaultFontSize">40</item>
+        <item name="defaultFontColor">@color/black_color</item>
+        <item name="defaultText">Login</item>
+    </style>
 
 </resources>
