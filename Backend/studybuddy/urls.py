@@ -37,5 +37,7 @@ urlpatterns = patterns('',
     url(r'^getUserInfo$', views.getUserInfo),
     url(r'^getCourseList$', views.getCourseList),
     url(r'^getInterestList$', views.getInterestList),
+    url(r'^addMessage$', views.addMessage),
+    url(r'^getMessages$', views.getMessages),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
