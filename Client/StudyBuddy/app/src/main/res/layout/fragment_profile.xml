@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="199dp"
         android:layout_height="35dp"
-        android:text="Name"
+        android:text="@string/userName"
         android:textStyle="bold"
         android:id="@+id/profileName"
         android:layout_row="0"
@@ -67,7 +67,7 @@
     <TextView
         android:layout_width="314dp"
         android:layout_height="100dp"
-        android:text="bio text here"
+        android:text="@string/userBio"
         android:id="@+id/profileBio"
         android:layout_row="2"
         android:layout_column="0"
@@ -97,7 +97,7 @@
     <TextView
         android:layout_width="121dp"
         android:layout_height="100dp"
-        android:text="course list here"
+        android:text="@string/userCourses"
         android:id="@+id/profileCourses"
         android:layout_row="4"
         android:layout_column="0"
@@ -127,7 +127,7 @@
     <TextView
         android:layout_width="118dp"
         android:layout_height="100dp"
-        android:text="interests here"
+        android:text="@string/userInterests"
         android:id="@+id/profileInterests"
         android:layout_row="6"
         android:layout_column="0"
