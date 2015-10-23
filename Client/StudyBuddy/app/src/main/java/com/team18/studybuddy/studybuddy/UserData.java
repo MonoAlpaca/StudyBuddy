@@ -15,6 +15,7 @@ public class UserData {
     String username, bio, year;
     String[] interests;
     String[][] courses;
+
     public UserData (String username, String bio, String[] interests, String[][] courses, String year) {
         this.username = username;
         this.bio = bio;
@@ -24,5 +25,24 @@ public class UserData {
 
     }
 
+    public String getUsername(){
+        return username;
 
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public String[] getInterests() {
+        return interests;
+    }
+
+    public String[][] getCourses() {
+        return courses;
+    }
+
+    public String getBio() {
+        return bio;
+    }
 }

@@ -16,7 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends ActionBarActivity
@@ -27,6 +32,7 @@ public class MainActivity extends ActionBarActivity
      */
     private String CUR_USERNAME;
     private String CUR_SERVICETAG;
+    UserData currentUser;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     int count = 0;
@@ -36,6 +42,19 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+    public void updateCurrentUser() throws ExecutionException, InterruptedException {
+        Object params[] = new Object[3];
+        params[0] = "getUserInfo";
+        params[1] = CUR_USERNAME;
+        params[2] = this;
+        currentUser = new RetrieveMotto().execute(params).get();
+
+
+    }
+
+    public UserData getCurrentUser() {
+        return currentUser;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +74,26 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        try {
+            updateCurrentUser();
+            TextView bioTest = (TextView) findViewById(R.id.bioText);
+            bioTest.setText(currentUser.getBio());
+            TextView nameTest = (TextView) findViewById(R.id.bioText);
+            nameTest.setText(currentUser.getUsername());
+
+            //Still need some way to parse interest and course
+            /*TextView interestText = (TextView) findViewById(R.id.bioText);
+            bioTest.setText(currentUser.getBio());
+            TextView couresText = (TextView) findViewById(R.id.bioText);
+            bioTest.setText(currentUser.getBio());*/
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
