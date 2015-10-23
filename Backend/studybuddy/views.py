@@ -11,14 +11,14 @@ def index(request):
     return HttpResponse("hello");
 
 def addCourse(request):
-    name = request.GET.get('name')
+    name = request.GET.get('course_name')
     course = Course()
     course.name = name
     course.save()
     return HttpResponse('Successfully added course')
 
 def addInterest(request):
-    name = request.GET.get('name')
+    name = request.GET.get('course_name')
     interest = Interest()
     interest.name = name
     interest.save()
@@ -51,8 +51,8 @@ def getUserList(request):
     return HttpResponse(serializers.serialize('json', User.objects.all()))
 
 def getUserInfo(request):
-#does not return actual interest list, must return info, not just pks
-    return HttpResponse(serializers.serialize('json', User.objects.filter(username=request.GET.get('username'))))
+    return HttpResponse(serializers.serialize('json', User.objects.filter(username=request.GET.get('username')), use_natural_foreign_keys=True))
+
 
 def addUserCourse(request):
     user = get_object_or_404(User, username = request.GET.get('username'))
@@ -92,3 +92,18 @@ def removeUserInterest(request):
 
 def getInterestList(request):
     return HttpResponse(serializers.serialize('json', Interest.objects.all()))
+
+def addMessage(request):
+    message = Message()
+    message.sender = get_object_or_404(User, username = request.GET.get('sender'))
+    message.receiver = get_object_or_404(User, username = request.GET.get('receiver'))
+    message.content = get_object_or_404(User, username = request.GET.get('content'))
+    message.save()
+    return HttpResponse('Successfully added message')
+
+def getMessages(request):
+    sender = get_object_or_404(User, username = request.GET.get('sender'))
+    receiver = get_object_or_404(User, username = request.GET.get('receiver'))
+    return HttpResponse(serializers.serialize('json', 
+            Message.objects.filter(sender=sender.id).filter(receiver=receiver.id)))
+
