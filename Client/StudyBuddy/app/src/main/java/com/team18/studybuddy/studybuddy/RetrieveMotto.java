@@ -80,9 +80,11 @@ public class RetrieveMotto extends AsyncTask<Object, Void, UserData> {
             e.printStackTrace();
         }
 
-        Log.d(TAG, content.toString());
 
+        content.deleteCharAt(0);
+        content.deleteCharAt(content.length()-1);
         JsonMotto getUserData = new JsonMotto();
+        Log.d(TAG, content.toString());
         UserData currentUser = null;
 
         try {
