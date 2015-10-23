@@ -6,6 +6,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,9 +26,9 @@ import ch.boye.httpclientandroidlib.client.HttpClient;
 //http://gmmotto.ddns.net/app/getUserInfo?username=mill1630
 
 
-public class RetrieveMotto extends AsyncTask<Object, Void, String> {
+public class RetrieveMotto extends AsyncTask<Object, Void, UserData> {
 
-    private static final String TAG = "JSONPARSE";
+    private static final String TAG = "RETRIEVEMOTTO";
     public String token;
     public String username;
     MainActivity main;
@@ -38,21 +41,28 @@ public class RetrieveMotto extends AsyncTask<Object, Void, String> {
                 .appendPath("app")
                 .appendPath(token)
                 .appendQueryParameter("username", username);
+        Log.d(TAG, "URI: " + builder.toString());
         return builder.toString();
+
     }
 
+    @Override
+    protected void onPreExecute() {
+
+    }
 
     @Override
-    protected String doInBackground(Object... params) {
+    protected UserData doInBackground(Object... params) {
         token = (String) params[0];
         username = (String) params[1];
         main = (MainActivity) params[2];
 
         StringBuilder content = new StringBuilder();
-
+        Log.d(TAG, "In Retrieve Motto");
         URL js = null;
         try {
             js = new URL(URLBuilder(token,username));
+
             URLConnection jc = js.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
             String line;
@@ -72,7 +82,18 @@ public class RetrieveMotto extends AsyncTask<Object, Void, String> {
 
         Log.d(TAG, content.toString());
 
-        return content.toString();
+        JsonMotto getUserData = new JsonMotto();
+        UserData currentUser = null;
+
+        try {
+            currentUser = getUserData.getInfo(content.toString());
+        } catch (JSONException e) {
+            Log.d(TAG, "Json Inccorrect");
+            e.printStackTrace();
+        }
+
+
+        return currentUser;
     }
 
 }
