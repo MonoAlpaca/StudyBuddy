@@ -9,6 +9,12 @@
     <string name="title_section6">Feedback</string>
     <string name="title_section7">Logout</string>
 
+    // Profile Values
+    <string name="userBio">""</string>
+    <string name="userName">""</string>
+    <string name="userCourses">""</string>
+    <string name="userInterests">""</string>
+
 
     <string name="button_test">Testing</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
