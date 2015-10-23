@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,13 +17,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Zeb on 10/15/2015.
  */
-public class ProfileFrag extends Fragment implements View.OnClickListener {
+public class ProfileFrag extends Fragment implements ISetTextInFragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+
+    TextView bioField;
+    TextView nameField;
+    TextView interestField;
+    TextView courseField;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -34,10 +41,21 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
+
+
     }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView;
 
-    public void onClick(View view) {
+        rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        bioField = (TextView) rootView.findViewById(R.id.profileBio);
+        bioField.setText("Is this going to work????");
+        nameField = (TextView) rootView.findViewById(R.id.profileName);
+        interestField = (TextView) rootView.findViewById(R.id.profileInterests);
+        courseField = (TextView) rootView.findViewById(R.id.profileCourses);
 
+        return rootView;
     }
 
     @Override
@@ -47,4 +65,23 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
+    @Override
+    public void showBioText(String testToShow) {
+        bioField.setText(testToShow);
+    }
+
+    @Override
+    public void showNameText(String testToShow) {
+        nameField.setText(testToShow);
+    }
+
+    @Override
+    public void showInterestText(String testToShow) {
+        interestField.setText(testToShow);
+    }
+
+    @Override
+    public void showCourseText(String testToShow) {
+        courseField.setText(testToShow);
+    }
 }

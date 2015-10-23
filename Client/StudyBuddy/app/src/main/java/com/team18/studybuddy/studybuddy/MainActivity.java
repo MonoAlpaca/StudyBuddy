@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
@@ -32,9 +34,14 @@ public class MainActivity extends ActionBarActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
+    private static final String TAG = "MAINACT";
+
+
     private String CUR_USERNAME;
     private String CUR_SERVICETAG;
     UserData currentUser;
+
+    ISetTextInFragment setProfile;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     int count = 0;
@@ -70,12 +77,12 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             CUR_USERNAME = extras.getString("Username");
             CUR_SERVICETAG = extras.getString("ServiceTag");
         }
-
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -88,29 +95,10 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
         try {
             addUser();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        try {
             updateCurrentUser();
-            TextView bioTest = (TextView) findViewById(R.id.bioText);
-            Log.d("MAINACT", currentUser.getBio());
-            bioTest.append(currentUser.getBio());
-            TextView nameText = (TextView) findViewById(R.id.profileName);
-            nameText.append(currentUser.getUsername());
-
-            //Still need some way to parse interest and course
-            /*TextView interestText = (TextView) findViewById(R.id.bioText);
-            bioTest.setText(currentUser.getBio());
-            TextView couresText = (TextView) findViewById(R.id.bioText);
-            bioTest.setText(currentUser.getBio());*/
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -139,17 +127,41 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-
+        try {
+            updateCurrentUser();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (position) {
             case 0:
+                Fragment profile = ProfileFrag.newInstance(position + 1);
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, ProfileFrag.newInstance(position + 1))
+                        .replace(R.id.container, profile).addToBackStack(null)
                         .commit();
+
+                setProfile = (ISetTextInFragment) profile;
+                if (setProfile == null) {
+                    Log.d(TAG, "Null Profile~~~~");
+                }else {
+                    Log.d(TAG, "getBio(): " + currentUser.getBio());
+                    new Handler().postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            setProfile.showBioText(currentUser.getBio());
+                            setProfile.showNameText(currentUser.getUsername());
+                        }
+                    }, 2000);
+
+                }
                 break;
             case 1:
                 Intent classes = new Intent(MainActivity.this, CoursePage.class);
                 startActivity(classes);
+                break;
             case 2:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, Chat.newInstance(position + 1))
