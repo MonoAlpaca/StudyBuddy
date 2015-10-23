@@ -25,6 +25,9 @@ public class MainActivity extends ActionBarActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
+    private String CUR_USERNAME;
+    private String CUR_SERVICETAG;
+
     private NavigationDrawerFragment mNavigationDrawerFragment;
     int count = 0;
 
@@ -33,9 +36,15 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            CUR_USERNAME = extras.getString("Username");
+            CUR_SERVICETAG = extras.getString("ServiceTag");
+        }
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)

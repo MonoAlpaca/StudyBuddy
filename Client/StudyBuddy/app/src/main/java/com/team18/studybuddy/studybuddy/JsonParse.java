@@ -71,6 +71,7 @@ public class JsonParse {
             JSONObject jsonResponse = new JSONObject(content.toString());
             JSONArray jsonArray = jsonResponse.getJSONArray("value");
 
+
             String courseFull = subject;
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject r = jsonArray.getJSONObject(i);
