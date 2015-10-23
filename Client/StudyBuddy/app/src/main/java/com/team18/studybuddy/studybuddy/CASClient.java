@@ -63,6 +63,8 @@ public class CASClient extends Activity {
                                                           finish();
 
                                                           Intent main = new Intent(CASClient.this, MainActivity.class);
+                                                          main.putExtra("Username", username.getText().toString());
+                                                          main.putExtra("ServiceTag", serviceTag);
                                                           startActivity(main);
                                                       }
 
