@@ -3,6 +3,7 @@ package com.team18.studybuddy.studybuddy;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -95,9 +97,10 @@ public class MainActivity extends ActionBarActivity
         try {
             updateCurrentUser();
             TextView bioTest = (TextView) findViewById(R.id.bioText);
-            bioTest.setText(currentUser.getBio());
-            TextView nameTest = (TextView) findViewById(R.id.bioText);
-            nameTest.setText(currentUser.getUsername());
+            Log.d("MAINACT", currentUser.getBio());
+            bioTest.append(currentUser.getBio());
+            TextView nameText = (TextView) findViewById(R.id.profileName);
+            nameText.append(currentUser.getUsername());
 
             //Still need some way to parse interest and course
             /*TextView interestText = (TextView) findViewById(R.id.bioText);
