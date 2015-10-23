@@ -68,7 +68,7 @@ def removeUserCourse(request):
     return HttpResponse('Successfully removed user course')
 
 def getCourseList(request):
-    return HttpResponse(serializers.serialize('json', Course.objects.all().values()))
+    return HttpResponse(serializers.serialize('json', Course.objects.all()))
 
 def addUserInterest(request):
     user = get_object_or_404(User, username = request.GET.get('username'))

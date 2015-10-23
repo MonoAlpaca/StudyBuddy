@@ -1,0 +1,10 @@
+cd repo/StudyBuddy
+git pull
+cp ../../db.sqlite3 Backend
+cp ../../manage.py Backend
+cp ../../README Backend
+cp -r ../../studybuddy Backend
+git add Backend/*
+git commit -m $1
+git push origin master
+cd ../..

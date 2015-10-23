@@ -26,4 +26,5 @@ class User(models.Model):
     interests = models.ManyToManyField(Interest)
     def __str__(self):
         return self.username
+    #test
 

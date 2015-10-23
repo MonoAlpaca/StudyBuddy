@@ -3,6 +3,7 @@ package com.team18.studybuddy.studybuddy;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity
@@ -23,16 +25,26 @@ public class MainActivity extends ActionBarActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
+    private String CUR_USERNAME;
+    private String CUR_SERVICETAG;
+
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    int count = 0;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            CUR_USERNAME = extras.getString("Username");
+            CUR_SERVICETAG = extras.getString("ServiceTag");
+        }
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -43,6 +55,27 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(count == 0){
+            Toast.makeText(MainActivity.this, "Press one more time to go back", Toast.LENGTH_SHORT).show();
+
+        }
+        count++;
+        if(count == 2){
+            finish();
+            Intent auth = new Intent(MainActivity.this, CASClient.class);
+            startActivity(auth);
+        }
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                count = 0;
+            }
+        }, 2000);
     }
 
     @Override
@@ -78,6 +111,7 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
             case 6:
+                finish();
                 Intent auth = new Intent(MainActivity.this, CASClient.class);
                 startActivity(auth);
                 break;

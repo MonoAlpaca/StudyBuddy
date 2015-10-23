@@ -51,6 +51,7 @@ def getUserList(request):
     return HttpResponse(serializers.serialize('json', User.objects.all()))
 
 def getUserInfo(request):
+#does not return actual interest list, must return info, not just pks
     return HttpResponse(serializers.serialize('json', User.objects.filter(username=request.GET.get('username'))))
 
 def addUserCourse(request):

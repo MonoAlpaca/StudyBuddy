@@ -22,9 +22,7 @@ class User(models.Model):
     username = models.CharField(max_length=50)
     year = models.CharField(default='FR', max_length=2, choices=year_choices)
     bio = models.CharField(default='', max_length=500)
-    picture_path = models.CharField(default='', max_length=200)
     courses = models.ManyToManyField(Course)
     interests = models.ManyToManyField(Interest)
     def __str__(self):
         return self.username
-
