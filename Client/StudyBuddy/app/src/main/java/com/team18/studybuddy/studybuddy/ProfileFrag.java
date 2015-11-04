@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -30,6 +31,7 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
     TextView nameField;
     TextView interestField;
     TextView courseField;
+    ProgressBar loadingBar;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -54,7 +56,7 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
         nameField = (TextView) rootView.findViewById(R.id.profileName);
         interestField = (TextView) rootView.findViewById(R.id.profileInterests);
         courseField = (TextView) rootView.findViewById(R.id.profileCourses);
-
+        loadingBar = (ProgressBar) rootView.findViewById(R.id.loading);
         return rootView;
     }
 
@@ -63,6 +65,17 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+
+    @Override
+    public void enableProgess() {
+        loadingBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void disableProgess() {
+        loadingBar.setVisibility(View.INVISIBLE);
+
     }
 
     @Override

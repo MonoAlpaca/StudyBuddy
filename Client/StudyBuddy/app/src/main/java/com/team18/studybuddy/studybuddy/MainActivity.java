@@ -151,10 +151,21 @@ public class MainActivity extends ActionBarActivity
 
                         @Override
                         public void run() {
+                            setProfile.enableProgess();
                             setProfile.showBioText(currentUser.getBio());
                             setProfile.showNameText(currentUser.getUsername());
                         }
                     }, 2000);
+
+                    new Handler().postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            setProfile.disableProgess();
+
+                        }
+                    }, 3000);
 
                 }
                 break;
