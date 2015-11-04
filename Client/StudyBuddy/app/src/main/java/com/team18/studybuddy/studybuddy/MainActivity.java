@@ -83,6 +83,14 @@ public class MainActivity extends ActionBarActivity
             CUR_USERNAME = extras.getString("Username");
             CUR_SERVICETAG = extras.getString("ServiceTag");
         }
+        try {
+            addUser();
+            updateCurrentUser();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -128,6 +136,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         try {
+
             updateCurrentUser();
         } catch (ExecutionException e) {
             e.printStackTrace();
