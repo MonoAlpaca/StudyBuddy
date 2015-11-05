@@ -1,13 +1,17 @@
 package com.team18.studybuddy.studybuddy;
 
 import android.app.Activity;
+import android.app.ListFragment;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -18,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -30,8 +35,10 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
     TextView bioField;
     TextView nameField;
     TextView interestField;
-    TextView courseField;
+    ListView courseField;
     ProgressBar loadingBar;
+
+    View rootView;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -46,17 +53,24 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
 
 
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView;
-
         rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         bioField = (TextView) rootView.findViewById(R.id.profileBio);
         bioField.setText("Is this going to work????");
+        courseField = (ListView)rootView.findViewById(R.id.list);
+
         nameField = (TextView) rootView.findViewById(R.id.profileName);
         interestField = (TextView) rootView.findViewById(R.id.profileInterests);
-        courseField = (TextView) rootView.findViewById(R.id.profileCourses);
         loadingBar = (ProgressBar) rootView.findViewById(R.id.loading);
+
         return rootView;
     }
 
@@ -94,7 +108,20 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
     }
 
     @Override
-    public void showCourseText(String testToShow) {
-        courseField.setText(testToShow);
+    public void showCourseText(String[][] testToShow) {
+        ArrayList<UserClasses> uc = new ArrayList<UserClasses>();
+
+        UserClasses uc2;
+
+        for (int i = 0; i < testToShow.length; i++) {
+            uc2 = new UserClasses(testToShow[i][0], testToShow[i][1]);
+            uc.add(uc2);
+        }
+        if(courseField == null) {
+            Log.d("PROFILEFRAG", "courseField empty");
+        }
+        courseField.setAdapter(new MyAdapter(rootView.getContext(), uc));
     }
+
+
 }

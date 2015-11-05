@@ -2,14 +2,15 @@ package com.team18.studybuddy.studybuddy;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.app.ListFragment;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -94,7 +95,7 @@ public class MainActivity extends ActionBarActivity
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+                getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
@@ -115,7 +116,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onBackPressed() {
         if(count == 0){
-            Toast.makeText(MainActivity.this, "Press one more time to go back", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Press back one more time to logout", Toast.LENGTH_SHORT).show();
 
         }
         count++;
@@ -143,10 +144,10 @@ public class MainActivity extends ActionBarActivity
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getFragmentManager();
         switch (position) {
             case 0:
-                Fragment profile = ProfileFrag.newInstance(position + 1);
+                Fragment profile = ProfileFrag.newInstance(position+1);
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, profile).addToBackStack(null)
                         .commit();
@@ -163,6 +164,7 @@ public class MainActivity extends ActionBarActivity
                             setProfile.enableProgess();
                             setProfile.showBioText(currentUser.getBio());
                             setProfile.showNameText(currentUser.getUsername());
+                            setProfile.showCourseText(currentUser.getCourses());
                         }
                     }, 2000);
 
@@ -227,18 +229,18 @@ public class MainActivity extends ActionBarActivity
 
     public void switchToChatSession(View view){
         Fragment chatSeshFrag = new ChatSessionFrag();
-        FragmentManager manager = getSupportFragmentManager();
+        FragmentManager manager = getFragmentManager();
         manager.beginTransaction().replace(R.id.container, ChatSessionFrag.newInstance(0)).commit();
     }
     public void switchToEditPicture(View view) {
         Fragment editFrag = new EditPictureFrag();
-        FragmentManager manager = getSupportFragmentManager();
+        FragmentManager manager = getFragmentManager();
         manager.beginTransaction().replace(R.id.container, EditPictureFrag.newInstance(0)).commit();
     }
 
     public void switchToEditProfile(View view) {
         Fragment editFrag = new EditProfileFrag();
-        FragmentManager manager = getSupportFragmentManager();
+        FragmentManager manager = getFragmentManager();
         manager.beginTransaction().replace(R.id.container, EditProfileFrag.newInstance(0)).commit();
     }
 
