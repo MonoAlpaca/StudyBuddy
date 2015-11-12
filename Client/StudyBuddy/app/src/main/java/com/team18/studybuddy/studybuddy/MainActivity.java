@@ -3,10 +3,17 @@ package com.team18.studybuddy.studybuddy;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.app.Fragment;
@@ -157,6 +164,7 @@ public class MainActivity extends ActionBarActivity
                             setProfile.enableProgess();
                             setProfile.showBioText(currentUser.getBio());
                             setProfile.showNameText(currentUser.getUsername());
+                            setProfile.showInterestText(currentUser.getInterests());
                             setProfile.showCourseText(currentUser.getCourses());
                         }
                     }, 2000);
@@ -224,6 +232,23 @@ public class MainActivity extends ActionBarActivity
         Fragment chatSeshFrag = new ChatSessionFrag();
         FragmentManager manager = getFragmentManager();
         manager.beginTransaction().replace(R.id.container, ChatSessionFrag.newInstance(0)).commit();
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        if (pref.getBoolean("notificationSettings", true)) {
+            Intent intent = new Intent(this, Chat.class);
+            PendingIntent pending = PendingIntent.getActivity(this, 0, intent, 0);
+
+            NotificationCompat.Builder notifications = new NotificationCompat.Builder(this)
+                    .setContentTitle("StudyBuddy")
+                    .setContentText("New Message")
+                    .setSmallIcon(R.drawable.mail_icon)
+                    .setContentIntent(pending);
+
+            NotificationManager notice = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notice.notify(0, notifications.build());
+        }
     }
     public void switchToEditPicture(View view) {
         Fragment editFrag = new EditPictureFrag();

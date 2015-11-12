@@ -34,7 +34,7 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
 
     TextView bioField;
     TextView nameField;
-    TextView interestField;
+    ListView interestField;
     ListView courseField;
     ProgressBar loadingBar;
 
@@ -68,7 +68,7 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
         courseField = (ListView)rootView.findViewById(R.id.list);
 
         nameField = (TextView) rootView.findViewById(R.id.profileName);
-        interestField = (TextView) rootView.findViewById(R.id.profileInterests);
+        interestField = (ListView) rootView.findViewById(R.id.profileInterests);
         loadingBar = (ProgressBar) rootView.findViewById(R.id.loading);
 
         return rootView;
@@ -103,8 +103,9 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
     }
 
     @Override
-    public void showInterestText(String testToShow) {
-        interestField.setText(testToShow);
+    public void showInterestText(String[] testToShow) {
+        //interestField.setAdapter();
+
     }
 
     @Override
