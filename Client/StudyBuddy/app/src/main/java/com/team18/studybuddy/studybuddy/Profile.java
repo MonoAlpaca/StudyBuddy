@@ -1,6 +1,7 @@
 package com.team18.studybuddy.studybuddy;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -92,4 +93,6 @@ public class Profile extends Activity {
         params[1] = CUR_USERNAME;
         currentUser = new RetrieveMotto().execute(params).get();
     }
+
+
 }
