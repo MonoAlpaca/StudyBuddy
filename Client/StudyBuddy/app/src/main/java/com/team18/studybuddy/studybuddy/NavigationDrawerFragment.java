@@ -255,7 +255,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         if (item.getItemId() == R.id.action_chat) {
             FragmentManager manager = getFragmentManager();
-            manager.beginTransaction().replace(R.id.container, Chat.newInstance(0)).commit();
+            manager.beginTransaction().replace(R.id.container, Chat.newInstance(0,"chen1370")).commit();
             return true;
         }
 

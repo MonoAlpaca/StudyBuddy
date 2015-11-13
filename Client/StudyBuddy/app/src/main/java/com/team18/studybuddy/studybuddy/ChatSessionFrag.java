@@ -20,6 +20,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * Created by Nathan on 10/16/2015.
@@ -40,6 +41,8 @@ public class ChatSessionFrag extends Activity {
     private Handler handler = new Handler();
 
     private void setupMessagePosting() {
+
+
         etMessage = (EditText) findViewById(R.id.etMessage);
         btSend = (Button) findViewById(R.id.btSend);
         lvChat = (ListView) findViewById(R.id.lvChat);
@@ -86,18 +89,27 @@ public class ChatSessionFrag extends Activity {
         }
         setContentView(R.layout.fragment_chat_session);
         setupMessagePosting();
-        handler.postDelayed(runnable, 100);
-
+        handler.postDelayed(runnable, 2333);
     }
 
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
             refreshMessages();
-            handler.postDelayed(this, 100);
+            handler.postDelayed(this, 2333);
         }
     };
 
+    protected void onStart() {
+        super.onStart();
+        handler = new Handler();
+        handler.post(runnable);
+
+    }
+    protected void onStop() {
+        super.onStop();
+        handler.removeCallbacks(runnable);
+    }
     private void refreshMessages() {
         receiveMessage();
     }

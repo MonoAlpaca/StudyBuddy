@@ -55,7 +55,6 @@ public class RetrieveMotto extends AsyncTask<Object, Void, UserData> {
     protected UserData doInBackground(Object... params) {
         token = (String) params[0];
         username = (String) params[1];
-        main = (MainActivity) params[2];
 
         StringBuilder content = new StringBuilder();
         Log.d(TAG, "In Retrieve Motto");

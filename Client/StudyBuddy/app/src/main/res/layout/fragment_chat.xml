@@ -1,33 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <Button
+    <ListView
+        android:id="@+id/chatList"
+        android:transcriptMode="alwaysScroll"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/llSend"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="chat with Scott"
-        android:id="@+id/button2"
-        android:onClick="switchToScott" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="chat with Chen"
-        android:id="@+id/button3"
-        android:onClick="switchToChen"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="chat with C"
-        android:id="@+id/button4"
-        android:onClick="switchToChatSession"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="chat with D"
-        android:id="@+id/button5"
-        android:onClick="switchToChatSession"/>
-</LinearLayout>
+        android:layout_height="match_parent" />
+</RelativeLayout>

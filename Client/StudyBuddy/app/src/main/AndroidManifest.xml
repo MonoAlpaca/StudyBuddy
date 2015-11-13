@@ -35,6 +35,10 @@
             android:label="CoursePage" >
         </activity>
         <activity
+            android:name=".Profile"
+            android:label="Profile" >
+        </activity>
+        <activity
             android:name=".ChatSessionFrag"
             android:label="ChatSessionFrag" >
         </activity>

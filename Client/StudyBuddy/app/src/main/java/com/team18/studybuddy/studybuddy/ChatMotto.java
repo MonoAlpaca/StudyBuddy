@@ -25,6 +25,17 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
     public String othername;
     public String message;
 
+    private String getChatBuilder(){
+        Uri.Builder builder  = new Uri.Builder();
+        builder.scheme("http")
+                .authority("gmmotto.ddns.net")
+                .appendPath("app")
+                .appendPath(token)
+                .appendQueryParameter("user", username);
+        Log.d(TAG, "URI: " + builder.toString());
+        return builder.toString();
+
+    }
 
     private String getBuilder(){
         Uri.Builder builder  = new Uri.Builder();
@@ -62,10 +73,12 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
     protected ArrayList<Message> doInBackground(Object... params) {
         token = (String) params[0];
         username = (String) params[1];
-        othername = (String) params[2];
-        if(token.equals("addMessage")) {
-            message = (String) params[3];
+        if(token.equals("getMessages") || token.equals("addMessage")) {
+            othername = (String) params[2];
+            if (token.equals("addMessage")) {
+                message = (String) params[3];
 
+            }
         }
 
         StringBuilder content = new StringBuilder();
@@ -77,6 +90,8 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
             }else if(token.equals("getMessages")) {
                 js = new URL(getBuilder());
 
+            }else if(token.equals("getChatList")) {
+                js = new URL(getChatBuilder());
             }
 
             URLConnection jc = js.openConnection();
@@ -95,18 +110,31 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ArrayList<Message> currentUser = new ArrayList<>();
 
-        ChatJsonMotto getMessages = new ChatJsonMotto();
-        Log.d(TAG, content.toString());
-        ArrayList<Message> currentUser = null;
+        if(token.equals("getChatList")) {
+             ChatListJsonMotto getMessages = new ChatListJsonMotto();
+            Log.d(TAG, content.toString());
 
-        try {
-            currentUser = getMessages.getMessages(content.toString());
-        } catch (JSONException e) {
-            Log.d(TAG, "Json Inccorrect");
-            e.printStackTrace();
+            try {
+                currentUser = getMessages.getMessages(content.toString());
+            } catch (JSONException e) {
+                Log.d(TAG, "Json Inccorrect");
+                e.printStackTrace();
+            }
+
+        }else {
+            ChatJsonMotto getMessages = new ChatJsonMotto();
+            Log.d(TAG, content.toString());
+
+            try {
+                currentUser = getMessages.getMessages(content.toString());
+            } catch (JSONException e) {
+                Log.d(TAG, "Json Inccorrect");
+                e.printStackTrace();
+            }
+
         }
-
 
         return currentUser;
     }
