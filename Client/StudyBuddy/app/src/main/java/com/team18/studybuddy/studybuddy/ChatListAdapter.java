@@ -20,10 +20,16 @@ import java.util.List;
  */
 public class ChatListAdapter extends ArrayAdapter<Message> {
     private String mUserId;
+    private List<Message> messages;
 
     public ChatListAdapter(Context context, String userId, List<Message> messages) {
         super(context, 0, messages);
+        this.messages = messages;
         this.mUserId = userId;
+    }
+
+    public Message getItem(int position){
+        return messages.get(position);
     }
 
     @Override

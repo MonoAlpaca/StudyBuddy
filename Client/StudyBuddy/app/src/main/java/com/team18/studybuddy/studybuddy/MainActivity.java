@@ -188,7 +188,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, Chat.newInstance(position + 1))
+                        .replace(R.id.container, Chat.newInstance(position + 1, CUR_USERNAME))
                         .commit();
                 break;
             case 3:
@@ -258,10 +258,7 @@ public class MainActivity extends ActionBarActivity
 
 
     public void switchToScott(View view){
-        Intent j = new Intent(this, ChatSessionFrag.class);
-        j.putExtra("me", CUR_USERNAME);
-        j.putExtra("person", "scott246");
-        startActivity(j);
+
 
     }
     public void switchToChen(View view){
