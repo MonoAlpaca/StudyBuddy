@@ -74,7 +74,6 @@ public class ChatSessionFrag extends Activity {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
-                ;
                 etMessage.setText("");
             }
         });

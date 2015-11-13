@@ -43,7 +43,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
             holder.body = (TextView)convertView.findViewById(R.id.tvBody);
             convertView.setTag(holder);
         }
-        final Message message = (Message)getItem(position);
+        final Message message = getItem(position);
         final ViewHolder holder = (ViewHolder)convertView.getTag();
         final boolean isMe = message.getUserId().equals(mUserId);
         // Show-hide image based on the logged-in user.
