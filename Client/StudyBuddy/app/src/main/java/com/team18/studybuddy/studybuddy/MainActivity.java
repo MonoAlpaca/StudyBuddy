@@ -83,6 +83,14 @@ public class MainActivity extends ActionBarActivity
             CUR_USERNAME = extras.getString("Username");
             CUR_SERVICETAG = extras.getString("ServiceTag");
         }
+        try {
+            addUser();
+            updateCurrentUser();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -93,14 +101,6 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-        try {
-            addUser();
-            updateCurrentUser();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -216,10 +216,19 @@ public class MainActivity extends ActionBarActivity
         startActivity(k);
     }
 
-    public void switchToChatSession(View view){
-        Fragment chatSeshFrag = new ChatSessionFrag();
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.container, ChatSessionFrag.newInstance(0)).commit();
+    public void switchToScott(View view){
+        Intent j = new Intent(this, ChatSessionFrag.class);
+        j.putExtra("me", CUR_USERNAME);
+        j.putExtra("person", "scott246");
+        startActivity(j);
+
+    }
+    public void switchToChen(View view){
+        Intent j = new Intent(this, ChatSessionFrag.class);
+        j.putExtra("me", CUR_USERNAME);
+        j.putExtra("person", "chen1370");
+        startActivity(j);
+
     }
     public void switchToEditPicture(View view) {
         Fragment editFrag = new EditPictureFrag();
