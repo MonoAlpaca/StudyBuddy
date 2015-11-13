@@ -35,8 +35,8 @@
             android:label="CoursePage" >
         </activity>
         <activity
-            android:name=".Chat"
-            android:label="@string/title_section3" >
+            android:name=".ChatSessionFrag"
+            android:label="ChatSessionFrag" >
         </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

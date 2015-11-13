@@ -29,7 +29,8 @@ public class JsonMotto {
         String[][] cour = new String[coursesArray.length()][2];
 
         for (int j = 0; j < interestArray.length(); j++) {
-            inter[j] = interestArray.getString(j);
+            JSONArray rinterests = interestArray.getJSONArray(j);
+            inter[j] = rinterests.getString(0);
         }
         for (int k = 0; k < coursesArray.length(); k++) {
             JSONArray rcourses = coursesArray.getJSONArray(k);
