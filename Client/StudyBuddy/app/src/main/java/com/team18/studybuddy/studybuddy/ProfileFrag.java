@@ -88,7 +88,6 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
     @Override
     public void disableProgess() {
         loadingBar.setVisibility(View.INVISIBLE);
-
     }
 
     @Override
