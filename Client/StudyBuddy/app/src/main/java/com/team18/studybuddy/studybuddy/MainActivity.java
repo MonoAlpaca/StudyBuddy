@@ -114,6 +114,7 @@ public class MainActivity extends ActionBarActivity
 
     }
 
+
     @Override
     public void onBackPressed() {
         if(count == 0){
@@ -193,6 +194,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 3:
                 Intent settings = new Intent(MainActivity.this, Settings.class);
+                settings.putExtra("username", CUR_USERNAME);
                 startActivity(settings);
                 break;
             case 4:
@@ -270,9 +272,9 @@ public class MainActivity extends ActionBarActivity
         j.putExtra("person", "chen1370");
         startActivity(j);
 
-
-
     }
+
+
     public void switchToEditPicture(View view) {
         Fragment editFrag = new EditPictureFrag();
         FragmentManager manager = getFragmentManager();

@@ -1,9 +1,16 @@
 package com.team18.studybuddy.studybuddy;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import android.view.View;
@@ -97,6 +104,8 @@ public class ChatSessionFrag extends Activity {
     }
 
     private void receiveMessage() {
+
+
         if(mMessages != null) {
             mMessages.clear();
         }
@@ -105,12 +114,29 @@ public class ChatSessionFrag extends Activity {
         params[1] = CUR_USERNAME;
         params[2] = CUR_OTHER;
         try {
-            ArrayList<Message> newMessages= new ChatMotto().execute(params).get();
+            ArrayList<Message> newMessages = new ChatMotto().execute(params).get();
             if(newMessages != null) {
                 mMessages.addAll(newMessages);
                 mAdapter.notifyDataSetChanged();
+                String name = newMessages.get(newMessages.size()-1).getUserId();
+                if(!name.equals(CUR_USERNAME) ) {
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
+                    if (pref.getBoolean("notificationSettings", true)) {
+                        Intent intent = new Intent(this, Chat.class);
+                        PendingIntent pending = PendingIntent.getActivity(this, 0, intent, 0);
 
+                        NotificationCompat.Builder notifications = new NotificationCompat.Builder(this)
+                                .setContentTitle("StudyBuddy")
+                                .setContentText("New Message")
+                                .setSmallIcon(R.drawable.mail_icon)
+                                .setContentIntent(pending);
+
+                        NotificationManager notice = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+                        notice.notify(0, notifications.build());
+                    }
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
