@@ -16,7 +16,7 @@ public class ChatListJsonMotto {
         JSONArray chatArray = new JSONArray(content);
         for (int j = 0; j < chatArray.length(); j++) {
             Message nMessage = new Message();
-            nMessage.setBody(chatArray.getJSONObject(j).getJSONObject("fields").getString("bio"));
+            nMessage.setBody(chatArray.getJSONObject(j).getJSONObject("fields").getString("username"));
             nMessage.setUserId(chatArray.getJSONObject(j).getJSONObject("fields").getString("username"));
             mMessages.add(nMessage);
 

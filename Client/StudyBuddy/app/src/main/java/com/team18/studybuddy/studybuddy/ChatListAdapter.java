@@ -56,6 +56,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
             holder.imageLeft.setVisibility(View.VISIBLE);
             holder.imageRight.setVisibility(View.GONE);
             holder.body.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+
         }
         final ImageView profileView = isMe ? holder.imageRight : holder.imageLeft;
         Picasso.with(getContext()).load(getProfileUrl(message.getUserId())).into(profileView);

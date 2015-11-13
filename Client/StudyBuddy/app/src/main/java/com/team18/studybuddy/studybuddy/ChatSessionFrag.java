@@ -129,23 +129,25 @@ public class ChatSessionFrag extends Activity {
             if(newMessages != null) {
                 mMessages.addAll(newMessages);
                 mAdapter.notifyDataSetChanged();
-                String name = newMessages.get(newMessages.size()-1).getUserId();
-                if(!name.equals(CUR_USERNAME) ) {
-                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                if(newMessages.size()-1 > 0) {
+                    String name = newMessages.get(newMessages.size() - 1).getUserId();
+                    if (!name.equals(CUR_USERNAME)) {
+                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-                    if (pref.getBoolean("notificationSettings", true)) {
-                        Intent intent = new Intent(this, Chat.class);
-                        PendingIntent pending = PendingIntent.getActivity(this, 0, intent, 0);
+                        if (pref.getBoolean("notificationSettings", true)) {
+                            Intent intent = new Intent(this, Chat.class);
+                            PendingIntent pending = PendingIntent.getActivity(this, 0, intent, 0);
 
-                        NotificationCompat.Builder notifications = new NotificationCompat.Builder(this)
-                                .setContentTitle("StudyBuddy")
-                                .setContentText("New Message")
-                                .setSmallIcon(R.drawable.mail_icon)
-                                .setContentIntent(pending);
+                            NotificationCompat.Builder notifications = new NotificationCompat.Builder(this)
+                                    .setContentTitle("StudyBuddy")
+                                    .setContentText("New Message")
+                                    .setSmallIcon(R.drawable.mail_icon)
+                                    .setContentIntent(pending);
 
-                        NotificationManager notice = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                            NotificationManager notice = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-                        notice.notify(0, notifications.build());
+                            notice.notify(0, notifications.build());
+                        }
                     }
                 }
             }
