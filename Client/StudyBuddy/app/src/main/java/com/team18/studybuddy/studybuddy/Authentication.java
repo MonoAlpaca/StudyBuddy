@@ -70,7 +70,7 @@ public class Authentication{
      *                   is <code>http://x.y.z/a/"</code>.
      */
     public Authentication(HttpClient httpClient, String casBaseUrl) {
-        this.httpClient = httpClient;
+        Authentication.httpClient = httpClient;
         this.casBaseURL = casBaseUrl;
     }
 

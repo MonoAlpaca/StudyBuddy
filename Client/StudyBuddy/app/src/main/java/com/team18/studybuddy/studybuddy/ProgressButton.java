@@ -79,7 +79,7 @@ public class ProgressButton extends ImageButton {
         }
 
         return isClicked;
-    };
+    }
 
 
     public void startLoadingAnimation() {
