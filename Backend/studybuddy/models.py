@@ -30,7 +30,11 @@ class Interest(models.Model):
     def __str__(self):
         return self.name
 
+class UserManager(models.Manager):
+    def get_by_natural_key(self, username):
+        return self.get(username=username)
 class User(models.Model):
+    objects = UserManager()
     year_choices = (
             ('FR', 'Freshman'),
             ('SO', 'Sophomore'),
@@ -43,8 +47,13 @@ class User(models.Model):
     bio = models.CharField(default='', max_length=500)
     courses = models.ManyToManyField(Course)
     interests = models.ManyToManyField(Interest)
+    block_list = models.ManyToManyField('User')
+    is_group = models.BooleanField(default=False)
+    def natural_key(self):
+        return (self.username)
     def __str__(self):
         return self.username
+
 
 class Message(models.Model):
     sender = models.ForeignKey(User, related_name='+')

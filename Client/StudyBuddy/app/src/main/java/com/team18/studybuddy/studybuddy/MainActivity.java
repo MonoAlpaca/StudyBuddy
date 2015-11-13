@@ -3,10 +3,17 @@ package com.team18.studybuddy.studybuddy;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.app.Fragment;
@@ -20,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,9 +75,9 @@ public class MainActivity extends ActionBarActivity
         params[1] = CUR_USERNAME;
         params[2] = this;
         currentUser = new RetrieveMotto().execute(params).get();
-
-
     }
+
+
 
     public UserData getCurrentUser() {
         return currentUser;
@@ -102,6 +110,7 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
 
     }
 
@@ -156,6 +165,7 @@ public class MainActivity extends ActionBarActivity
                             setProfile.enableProgess();
                             setProfile.showBioText(currentUser.getBio());
                             setProfile.showNameText(currentUser.getUsername());
+                            setProfile.showInterestText(currentUser.getInterests());
                             setProfile.showCourseText(currentUser.getCourses());
                         }
                     }, 2000);
@@ -209,15 +219,43 @@ public class MainActivity extends ActionBarActivity
         }
 
     }
+    public void updateBio(View v) {
+        EditText edit = (EditText) findViewById(R.id.profileBio);
+        String updatedBio = edit.getText().toString();
+        edit.setText(updatedBio);
+        Object params[] = new Object[3];
+        params[0] = "editUser";
+        params[1] = CUR_USERNAME;
+        params[2] = updatedBio;
+
+        try {
+            final Boolean bioUpdated = new UpdateBioMotto().execute(params).get();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(bioUpdated) {
+                        Toast.makeText(MainActivity.this, "Updated your bio!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Update bio has succeed");
+                    }
+                }
+            }, 1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void switchToClasses(View view) {
-        Intent j = new Intent(this, Courses.class);
+        Intent j = new Intent(this, Chat.class);
         startActivity(j);
     }
     public void whatever(View view) {
         Intent k = new Intent(this, Chat.class);
         startActivity(k);
     }
+
 
     public void switchToScott(View view){
         Intent j = new Intent(this, ChatSessionFrag.class);
@@ -231,6 +269,7 @@ public class MainActivity extends ActionBarActivity
         j.putExtra("me", CUR_USERNAME);
         j.putExtra("person", "chen1370");
         startActivity(j);
+
 
 
     }
