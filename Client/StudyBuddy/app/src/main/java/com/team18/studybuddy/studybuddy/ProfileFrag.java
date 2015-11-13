@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -34,7 +35,7 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
 
     TextView bioField;
     TextView nameField;
-    TextView interestField;
+    ListView interestField;
     ListView courseField;
     ProgressBar loadingBar;
 
@@ -64,11 +65,9 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         bioField = (TextView) rootView.findViewById(R.id.profileBio);
-        bioField.setText("Is this going to work????");
         courseField = (ListView)rootView.findViewById(R.id.list);
-
         nameField = (TextView) rootView.findViewById(R.id.profileName);
-        interestField = (TextView) rootView.findViewById(R.id.profileInterests);
+        interestField = (ListView) rootView.findViewById(R.id.profileInterests);
         loadingBar = (ProgressBar) rootView.findViewById(R.id.loading);
 
         return rootView;
@@ -103,8 +102,13 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
     }
 
     @Override
-    public void showInterestText(String testToShow) {
-        interestField.setText(testToShow);
+    public void showInterestText(String[] testToShow) {
+        ArrayList<String> items = new ArrayList<String>();
+        for (int i = 0; i < testToShow.length; i++) {
+            items.add(i, testToShow[i]);
+        }
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, items);
+        interestField.setAdapter(adap);
     }
 
     @Override

@@ -7,17 +7,9 @@
         android:key="settingsNotification">
 
         <CheckBoxPreference
-            android:title="Allow Notifications from Courses"
-            android:key="settingsNotificationCourses" />
-        <CheckBoxPreference
-            android:title="Allow Notifications from Interests"
-            android:key="settingsNotificationInterests" />
-        <CheckBoxPreference
-            android:title="Allow Notifications from Chat"
-            android:key="settingsNotificationChat" />
-        <CheckBoxPreference
-            android:title="Allow Notifications in the Taskbar"
-            android:key="settingsNotificationTaskbar" />
+            android:title="Allow Notifications"
+            android:defaultValue="true"
+            android:key="notificationSettings" />
 
     </PreferenceCategory>
 
