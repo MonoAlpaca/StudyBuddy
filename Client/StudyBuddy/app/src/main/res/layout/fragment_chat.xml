@@ -6,16 +6,16 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="chat with A"
+        android:text="chat with Scott"
         android:id="@+id/button2"
-        android:onClick="switchToChatSession" />
+        android:onClick="switchToScott" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="chat with B"
+        android:text="chat with Chen"
         android:id="@+id/button3"
-        android:onClick="switchToChatSession"/>
+        android:onClick="switchToChen"/>
 
     <Button
         android:layout_width="wrap_content"

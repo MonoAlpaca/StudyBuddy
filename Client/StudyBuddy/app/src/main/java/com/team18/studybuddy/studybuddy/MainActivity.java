@@ -256,27 +256,22 @@ public class MainActivity extends ActionBarActivity
         startActivity(k);
     }
 
-    public void switchToChatSession(View view){
-        Fragment chatSeshFrag = new ChatSessionFrag();
-        FragmentManager manager = getFragmentManager();
-        manager.beginTransaction().replace(R.id.container, ChatSessionFrag.newInstance(0)).commit();
 
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+    public void switchToScott(View view){
+        Intent j = new Intent(this, ChatSessionFrag.class);
+        j.putExtra("me", CUR_USERNAME);
+        j.putExtra("person", "scott246");
+        startActivity(j);
 
-        if (pref.getBoolean("notificationSettings", true)) {
-            Intent intent = new Intent(this, Chat.class);
-            PendingIntent pending = PendingIntent.getActivity(this, 0, intent, 0);
+    }
+    public void switchToChen(View view){
+        Intent j = new Intent(this, ChatSessionFrag.class);
+        j.putExtra("me", CUR_USERNAME);
+        j.putExtra("person", "chen1370");
+        startActivity(j);
 
-            NotificationCompat.Builder notifications = new NotificationCompat.Builder(this)
-                    .setContentTitle("StudyBuddy")
-                    .setContentText("New Message")
-                    .setSmallIcon(R.drawable.mail_icon)
-                    .setContentIntent(pending);
 
-            NotificationManager notice = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            notice.notify(0, notifications.build());
-        }
     }
     public void switchToEditPicture(View view) {
         Fragment editFrag = new EditPictureFrag();
