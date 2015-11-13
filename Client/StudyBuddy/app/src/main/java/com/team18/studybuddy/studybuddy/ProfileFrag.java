@@ -65,9 +65,7 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         bioField = (TextView) rootView.findViewById(R.id.profileBio);
-        bioField.setText("Is this going to work????");
         courseField = (ListView)rootView.findViewById(R.id.list);
-
         nameField = (TextView) rootView.findViewById(R.id.profileName);
         interestField = (ListView) rootView.findViewById(R.id.profileInterests);
         loadingBar = (ProgressBar) rootView.findViewById(R.id.loading);

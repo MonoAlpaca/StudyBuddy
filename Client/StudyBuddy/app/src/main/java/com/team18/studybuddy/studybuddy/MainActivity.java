@@ -76,11 +76,8 @@ public class MainActivity extends ActionBarActivity
         params[2] = this;
         currentUser = new RetrieveMotto().execute(params).get();
     }
-    public void submitFeedback() throws ExecutionException, InterruptedException {
-        EditText edit =  (EditText) findViewById(R.id.feedbackText);
-        String feedback = edit.toString();
 
-    }
+
 
     public UserData getCurrentUser() {
         return currentUser;
@@ -222,9 +219,36 @@ public class MainActivity extends ActionBarActivity
         }
 
     }
+    public void updateBio(View v) {
+        EditText edit = (EditText) findViewById(R.id.profileBio);
+        String updatedBio = edit.getText().toString();
+        edit.setText(updatedBio);
+        Object params[] = new Object[3];
+        params[0] = "editUser";
+        params[1] = CUR_USERNAME;
+        params[2] = updatedBio;
+
+        try {
+            final Boolean bioUpdated = new UpdateBioMotto().execute(params).get();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(bioUpdated) {
+                        Toast.makeText(MainActivity.this, "Updated your bio!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Update bio has succeed");
+                    }
+                }
+            }, 1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void switchToClasses(View view) {
-        Intent j = new Intent(this, Courses.class);
+        Intent j = new Intent(this, Chat.class);
         startActivity(j);
     }
     public void whatever(View view) {
