@@ -19,3 +19,189 @@ check out views.py for the list of functions supported, the request.GET.get
 are the arguments that we want.
 
 More formal documentation to come.
+
+URL format: 
+example call
+
+example
+example call
+arguments:
+	exArg1: whatever 'examplevalue'
+	exArg2: whatever 'example another value'
+
+gmmotto.ddns.net/app/example?exArg1=examplevalue&exArg2=example%20another%20value
+
+API calls:
+
+addCourse
+adds a course to the course database
+arguments:
+	name: the name of the course 'CS307'
+	title: the title/description of the course 'Software Engineering'
+URL example :
+http://gmmotto.ddns.net/app/addCourse?course_name=CS100&title=programming%20for%20noobs
+
+addInterest
+adds an interest to the interest database
+arguments:
+	name: the name of the interest 'ping pong'
+URL example : http://gmmotto.ddns.net/app/addInterest?interet_name=bread
+
+addUser
+adds a user to the user database
+arguments:
+	username: the name of the user 'mill1630'
+URL example : http://gmmotto.ddns.net/app/addUser?username=test
+
+editUser
+changes the value of ta particular user
+all arguments but username are optional
+arguments:
+	username: the username of the user 'mill1630'
+	year: the year of the user 'FR|SO|JR|SR|GR'
+	bio: the bio of the user 'space%20cat%20lover'
+URL example : http://gmmotto.ddns.net/app/editUser?username=demo&bio=test
+
+getAllUsers:
+gets a list of all users, including groups
+no arguments
+URL example : http://gmmotto.ddns.net/app/getAllUsers
+
+getUserList:
+gets a list of all users, not including groups
+no arguments
+URL example : http://gmmotto.ddns.net/app/getUserList
+
+getPersonalUserList:
+gets a list of all users, excluding a user's blocked users
+arguments:
+	username: the user whose blocklist is to be used 'mill1630'
+URL example : http://gmmotto.ddns.net/app/getPersonalUserList?username=test
+
+getUserInfo:
+returns the object containing the information for a user
+arguments:
+	username: the username of the user 'mill1630'
+URL example : http://gmmotto.ddns.net/app/getUserInfo?username=test
+
+addUserCourse:
+adds a course to a user
+arguments:
+	username: the username of the user 'mill1630'
+	course_name: the name of the course to be added 'CS307'
+URL example : http://gmmotto.ddns.net/app/addUserCourse?username=demo&course_name=cs280
+
+removeUserCourse:
+removes a course from a user
+arguments:
+	username: the username of the user 'mill1630'
+	course_name: the name of the course to be removed 'CS307'
+URL example : http://gmmotto.ddns.net/app/removeUserCourse?username=test&course_name=cs280
+
+getCourseList:
+gets the entire list of courses
+no arguments
+URL example : http://gmmotto.ddns.net/app/getCourseList
+
+addUserInterest:
+adds an interest to a user
+arguments:
+	username: the username of the user 'mill1630'
+	interest_name: the name of the interest to be added 'space%20cats'
+URL example : http://gmmotto.ddns.net/app/addUserInterest?username=test&interest_name=football
+
+removeUserInterest:
+removes an interest from a user
+arguments:
+	username: the username of the user 'mill1630'
+	interest_name: the name of the interest to be removed 'bread'
+URL example : http://gmmotto.ddns.net/app/removeUserInterest?username=test&interest_name=football
+
+getInterestList:
+returns a lost of all of the interests in the database
+no arguments
+URL example : http://gmmotto.ddns.net/app/getInterestList
+
+addMessage:
+adds a message to the database
+arguments:
+	sender: the sender username 'mill1630'
+	receiver: the receiver username 'abhijay'
+	content: the content of the message 'sup%20bby'
+URL example : http://gmmotto.ddns.net/app/addMessages?p1=demo&p2=test&content=hey
+
+getMessages:
+gets the list of messages sent between two participants
+arguments:
+	p1: the first participant 'mill1630'
+	p2: the second participant 'abhijay'
+URL example : http://gmmotto.ddns.net/app/getMessages?p1=demo&p2=test
+
+getOlderMessages:
+deprecated
+
+getNewerMessages:
+deprecated
+
+getChatList:
+gets the list of users a certain user has chatted with
+arguments:
+	username: the user for whom you want the chat list 'mill1630'
+URL example : http://gmmotto.ddns.net/app/getChatList?user=Test
+
+createGroup:
+creates a group
+arguments:
+	name: name of the group to create 'bbws'
+	user: name of the group creator, will be automatically added 'sinnamon'
+URL example : http://gmmotto.ddns.net/app/createGroup?name=TestingGroup&user=test
+
+addUserToGroup:
+adds a user to a group
+arguments:
+	name: name of the group to add to 'bbws'
+	user: username of the user to add 'precious'
+URL example : http://gmmotto.ddns.net/app/addUserToGroup?name=TestingGroup&user=test
+
+removeUserFromGroup:
+removes a user from a group
+arguments:
+	name: name of the group to remove from 'bbws'
+	user: username of the user to remove 'destiny'
+URL example : http://gmmotto.ddns.net/app/removeUserFromGroup?name=TestingGroup&user=test
+
+getGroupMembers:
+gets a list of users in a group
+arguments:
+	name: name of the group to get the users of 'bbws'
+URL examole : http://gmmotto.ddns.net/app/getGroupMembers?name=TestingGroup
+
+sendMessageToGroup:
+sends a message to a group
+arguments:
+	name: name of the group to send the message to 'bbws'
+	user: name of the user that is sending the message to the group 'sinnamon'
+	content: message to be sent
+	'which%20one%20of%20you%20bitches%20used%20my%20flavored%20cocoa%20butter'
+URL example : http://gmmotto.ddns.net/app/sendMessageToGroup?name=TestingGroup&user=test&content=Hey
+
+getGroupMessages:
+returns a list of messages sent to a group
+arguments:
+	name: name of the group in question 'bbws'
+URL example : http://gmmotto.ddns.net/app/getGroupMessages?name=TestingGroup
+
+addBlockedUser
+adds a user to the block list
+arguments:
+	username: user to block for 'mill1630'
+	block: user to add to block list 'abhijay'
+URL example :
+http://gmmotto.ddns.net/app/addBlockedUser?username=test&block=demo
+
+removeBlockedUser
+removes a user from the block list
+arguments:
+	username: username to unblock for 'mill1630'
+	block: user to remove from block list 'abhijay'
+URL example: http://gmmotto.ddns.net/app/removeBlockedUser?username=test&block=demo
