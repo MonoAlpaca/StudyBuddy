@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class Profile extends Activity {
     TextView nameField;
     ListView interestField;
     ListView courseField;
+    Button editBio;
     ProgressBar loadingBar;
 
     @Override
@@ -45,11 +47,13 @@ public class Profile extends Activity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        editBio = (Button) findViewById(R.id.updateBio);
+        editBio.setVisibility(View.GONE);
         bioField = (TextView) findViewById(R.id.profileBio);
         courseField = (ListView) findViewById(R.id.list);
         nameField = (TextView) findViewById(R.id.profileName);
         interestField = (ListView) findViewById(R.id.profileInterests);
+        interestField.setEnabled(false);
         loadingBar = (ProgressBar) findViewById(R.id.loading);
 
         new Handler().postDelayed(new Runnable() {
@@ -93,6 +97,8 @@ public class Profile extends Activity {
         params[1] = CUR_USERNAME;
         currentUser = new RetrieveMotto().execute(params).get();
     }
-
+    public void onInterestsClick(View v){
+        return;
+    }
 
 }
