@@ -147,7 +147,7 @@ def getChatList(request):
     participants = set(map(lambda x: x['sender_id'], Message.objects.filter(Q(sender=user.id)|Q(receiver=user.id)).values()) +
                        map(lambda x: x['receiver_id'], Message.objects.filter(Q(sender=user.id)|Q(receiver=user.id)).values()))
     participants.discard(user.id)
-    return HttpResponse(serializers.serialize('json', User.objects.filter(id__in=participants), use_natural_foreign_keys=True))
+    return HttpResponse(serializers.serialize('json', User.objects.filter(id__in=participants).exclude(id__in=user.block_list.all()), use_natural_foreign_keys=True))
 
 def createGroup(request):
     group, created = User.objects.get_or_create(username=request.GET.get('name'))
