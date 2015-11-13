@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,7 +75,10 @@ public class MainActivity extends ActionBarActivity
         params[1] = CUR_USERNAME;
         params[2] = this;
         currentUser = new RetrieveMotto().execute(params).get();
-
+    }
+    public void submitFeedback() throws ExecutionException, InterruptedException {
+        EditText edit =  (EditText) findViewById(R.id.feedbackText);
+        String feedback = edit.toString();
 
     }
 

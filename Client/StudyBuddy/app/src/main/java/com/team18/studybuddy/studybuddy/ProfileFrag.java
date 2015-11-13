@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -104,8 +105,12 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
 
     @Override
     public void showInterestText(String[] testToShow) {
-        //interestField.setAdapter();
-
+        ArrayList<String> items = new ArrayList<String>();
+        for (int i = 0; i < testToShow.length; i++) {
+            items.add(i, testToShow[i]);
+        }
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, items);
+        interestField.setAdapter(adap);
     }
 
     @Override
