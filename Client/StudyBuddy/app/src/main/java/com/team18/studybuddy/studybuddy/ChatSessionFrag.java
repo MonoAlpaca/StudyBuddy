@@ -2,8 +2,10 @@ package com.team18.studybuddy.studybuddy;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import android.os.Handler;
 import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by Nathan on 10/16/2015.
  */
+
 public class ChatSessionFrag extends Activity {
     private ListView lvChat;
     private ArrayList<Message> mMessages;

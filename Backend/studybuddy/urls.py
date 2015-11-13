@@ -39,5 +39,8 @@ urlpatterns = patterns('',
     url(r'^getInterestList$', views.getInterestList),
     url(r'^addMessage$', views.addMessage),
     url(r'^getMessages$', views.getMessages),
+    url(r'^getNewerMessages$', views.getNewerMessages),
+    url(r'^getOlderMessages$', views.getOlderMessages),
+    url(r'^getChatList$', views.getChatList),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
