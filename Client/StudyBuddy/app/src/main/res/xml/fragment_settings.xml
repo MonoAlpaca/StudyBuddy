@@ -25,10 +25,11 @@
             android:entries="@array/colorArray"
             android:entryValues="@array/colorValues" />
 
-        <Preference
+        <EditTextPreference
             android:title="Block List"
-            android:summary="Manage blocked users"
-            android:key="settingsBlockList"/>
+            android:summary="Block users"
+            android:positiveButtonText="Block"
+            android:key="blockList"/>
 
         <Preference
             android:title="Logout"
