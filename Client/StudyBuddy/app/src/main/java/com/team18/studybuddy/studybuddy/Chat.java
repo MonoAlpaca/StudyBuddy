@@ -1,7 +1,12 @@
 package com.team18.studybuddy.studybuddy;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
@@ -9,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,6 +27,8 @@ public class Chat extends Fragment{
     private ListView chatList;
     private ArrayList<Message> mMessages;
     private ChatListAdapter mAdapter;
+    private String OTHER_USERNAME;
+    AlertDialog alertDialog;
 
     String CUR_USERNAME;
     /**
@@ -42,6 +50,7 @@ public class Chat extends Fragment{
         return fragment;
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,24 +64,66 @@ public class Chat extends Fragment{
         params[1] = CUR_USERNAME;
         try {
             mMessages = new ChatMotto().execute(params).get();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        LayoutInflater li = LayoutInflater.from(rootView.getContext());
+        View promptsView = li.inflate(R.layout.prompt, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                rootView.getContext());
+        alertDialogBuilder.setView(promptsView);
+        final EditText userInput = (EditText) promptsView
+                .findViewById(R.id.editTextDialogUserInput);
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // get user input and set it to result
+                                // edit text
+                                OTHER_USERNAME = userInput.getText().toString();
+                                Intent j = new Intent(rootView.getContext(), ChatSessionFrag.class);
+                                j.putExtra("me", CUR_USERNAME);
+
+                                j.putExtra("person", OTHER_USERNAME);
+                                startActivity(j);
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create alert dialog
+        alertDialog = alertDialogBuilder.create();
+
+        // show it
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mAdapter = new ChatListAdapter(rootView.getContext(), CUR_USERNAME, mMessages);
+
                 chatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Message currentMessage = (Message) parent.getItemAtPosition(position);
-                        Intent j = new Intent(rootView.getContext(), ChatSessionFrag.class);
-                        j.putExtra("me", CUR_USERNAME);
-                        j.putExtra("person", currentMessage.getUserId());
-                        startActivity(j);
+                        if(currentMessage.getUserId().equals("createNewChat")) {
+                            alertDialog.show();
+
+                        }else{
+                            OTHER_USERNAME = currentMessage.getUserId();
+                            Intent j = new Intent(rootView.getContext(), ChatSessionFrag.class);
+                            j.putExtra("me", CUR_USERNAME);
+
+                            j.putExtra("person", OTHER_USERNAME);
+                            startActivity(j);
+                        }
                     }
                 });
                 chatList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -86,6 +137,12 @@ public class Chat extends Fragment{
                                                         }
                                                     }
                 );
+                Message createMessage = new Message();
+                createMessage.setUserId("createNewChat");
+                createMessage.setBody("Click to create new chat");
+                mMessages.add(createMessage);
+                mAdapter = new ChatListAdapter(rootView.getContext(), CUR_USERNAME, mMessages);
+
                 chatList.setAdapter(mAdapter);
             }
         }, 2000);

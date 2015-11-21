@@ -109,7 +109,7 @@ public class MainActivity extends ActionBarActivity
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+                (DrawerLayout) findViewById(R.id.drawer_layout), CUR_USERNAME);
 
 
     }
@@ -184,7 +184,8 @@ public class MainActivity extends ActionBarActivity
                 }
                 break;
             case 1:
-                Intent classes = new Intent(MainActivity.this, CoursePage.class);
+                Intent classes = new Intent(MainActivity.this, Courses.class);
+                classes.putExtra("Username", CUR_USERNAME);
                 startActivity(classes);
                 break;
             case 2:
@@ -248,27 +249,10 @@ public class MainActivity extends ActionBarActivity
             e.printStackTrace();
         }
     }
-
-    public void switchToClasses(View view) {
-        Intent j = new Intent(this, Chat.class);
-        startActivity(j);
-    }
-    public void whatever(View view) {
-        Intent k = new Intent(this, Chat.class);
-        startActivity(k);
-    }
-
-
-    public void switchToScott(View view){
-
-
-    }
-    public void switchToChen(View view){
-        Intent j = new Intent(this, ChatSessionFrag.class);
-        j.putExtra("me", CUR_USERNAME);
-        j.putExtra("person", "chen1370");
-        startActivity(j);
-
+    public void onInterestsClick(View view) {
+        Intent interests = new Intent(MainActivity.this, Interests.class);
+        interests.putExtra("Username", CUR_USERNAME);
+        startActivity(interests);
     }
 
 

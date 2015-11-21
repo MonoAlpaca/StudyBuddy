@@ -35,6 +35,10 @@
             android:label="CoursePage" >
         </activity>
         <activity
+            android:name=".Interests"
+            android:label="Interests" >
+        </activity>
+        <activity
             android:name=".Profile"
             android:label="Profile" >
         </activity>
