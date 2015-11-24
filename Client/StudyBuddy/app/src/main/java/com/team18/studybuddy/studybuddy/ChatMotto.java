@@ -28,8 +28,7 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
     private String getChatBuilder(){
         Uri.Builder builder  = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("user", username);
         Log.d(TAG, "URI: " + builder.toString());
@@ -40,8 +39,7 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
     private String getBuilder(){
         Uri.Builder builder  = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("p1", username)
                 .appendQueryParameter("p2", othername);
@@ -52,8 +50,7 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
     private String addBuilder(){
         Uri.Builder builder  = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("sender", username)
                 .appendQueryParameter("receiver", othername)
