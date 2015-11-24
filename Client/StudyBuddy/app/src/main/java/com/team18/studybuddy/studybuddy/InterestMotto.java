@@ -29,8 +29,7 @@ public class InterestMotto extends AsyncTask<Object, Void, ArrayList<String>> {
     private String getInterestBuilder() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token);
         Log.d(TAG, "URI: " + builder.toString());
         return builder.toString();
