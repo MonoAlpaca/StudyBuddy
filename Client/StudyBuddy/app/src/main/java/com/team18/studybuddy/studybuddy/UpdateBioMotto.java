@@ -55,8 +55,7 @@ public class UpdateBioMotto extends AsyncTask<Object, Void, Boolean> {
     private String URLBuilder(){
         Uri.Builder builder  = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("username", username)
                 .appendQueryParameter("bio", content);

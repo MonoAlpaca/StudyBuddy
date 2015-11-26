@@ -37,8 +37,7 @@ public class RetrieveMotto extends AsyncTask<Object, Void, UserData> {
     private String URLBuilder(String token, String username){
         Uri.Builder builder  = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("username", username);
         Log.d(TAG, "URI: " + builder.toString());

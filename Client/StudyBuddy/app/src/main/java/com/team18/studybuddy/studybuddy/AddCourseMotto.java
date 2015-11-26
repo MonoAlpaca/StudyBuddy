@@ -25,8 +25,7 @@ public class AddCourseMotto extends AsyncTask<Object, Void, Boolean> {
     private String removeUserCourseBuilder(){
         Uri.Builder builder  = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("username", courseID)
                 .appendQueryParameter("course_name", courseName);
@@ -38,8 +37,7 @@ public class AddCourseMotto extends AsyncTask<Object, Void, Boolean> {
     private String addCourseBuilder(){
         Uri.Builder builder  = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("course_name", courseID)
                 .appendQueryParameter("course_title", courseName);
@@ -51,8 +49,7 @@ public class AddCourseMotto extends AsyncTask<Object, Void, Boolean> {
     private String addUserCourseBuilder(){
         Uri.Builder builder  = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("username", courseID)
                 .appendQueryParameter("course_name", courseName);

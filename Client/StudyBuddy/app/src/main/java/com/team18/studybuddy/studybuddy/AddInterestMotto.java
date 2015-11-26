@@ -25,8 +25,7 @@ public class AddInterestMotto extends AsyncTask<Object, Void, Boolean> {
     private String removeUserInterestBuilder() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("username", courseID)
                 .appendQueryParameter("interest_name", courseName);
@@ -39,8 +38,7 @@ public class AddInterestMotto extends AsyncTask<Object, Void, Boolean> {
     private String addInterestBuilder() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("interest_name", courseID);
 
@@ -52,8 +50,7 @@ public class AddInterestMotto extends AsyncTask<Object, Void, Boolean> {
     private String addUserInterestBuilder() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
-                .authority("gmmotto.ddns.net")
-                .appendPath("app")
+                .authority("llama.bot.nu")
                 .appendPath(token)
                 .appendQueryParameter("username", courseID)
                 .appendQueryParameter("interest_name", courseName);
