@@ -9,7 +9,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:contentDescription="Other Profile Pic"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/sbicon" />
 
 
     <TextView
@@ -27,5 +27,5 @@
         android:layout_height="64dp"
         android:layout_marginLeft="-64dp"
         android:contentDescription="Me Profile Pic"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/sbicon" />
 </LinearLayout>

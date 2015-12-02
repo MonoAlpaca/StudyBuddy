@@ -1,8 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@style/AppTheme">
         <!-- Customize your theme here. -->
+        <item name="android:colorForeground">@color/foreground_material_dark</item>
     </style>
     <attr name="progressButtonStyle" format="reference" />
 
@@ -25,5 +26,7 @@
         <item name="defaultFontColor">@color/black_color</item>
         <item name="defaultText">Login</item>
     </style>
+
+    <style name="PurdueDark" parent="@style/AppTheme" />
 
 </resources>
