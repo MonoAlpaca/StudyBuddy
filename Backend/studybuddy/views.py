@@ -60,6 +60,24 @@ def getAllUsers(request):
 def getUserList(request):
     return HttpResponse(serializers.serialize('json', User.objects.exclude(is_group=True), use_natural_foreign_keys=True))
 
+def getUserByCourse(request):
+    courses = request.GET.get('course_list')
+    courseList = courses.split(':')
+    userList = User.objects
+    for course in courseList:
+        courseObject = get_object_or_404(Course, name=course)
+        userList = userList.filter(courses__name__contains=courseObject.name)
+    return HttpResponse(serializers.serialize('json', userList, use_natural_foreign_keys=True))
+
+def getUserByInterest(request):
+    interests = request.GET.get('interest_list')
+    interestList = interests.split(':')
+    userList = User.objects
+    for interest in interestList:
+        interestObject = get_object_or_404(Interest, name=interest)
+        userList = userList.filter(interests__name__contains=interestObject)
+    return HttpResponse(serializers.serialize('json', userList, use_natural_foreign_keys=True))
+
 def getPersonalUserList(request):
     user = get_object_or_404(User, username = request.GET.get('username'))
     return HttpResponse(serializers.serialize('json', User.objects.exclude(Q(is_group=True) | Q(id__in=user.block_list.all())), use_natural_foreign_keys=True))
