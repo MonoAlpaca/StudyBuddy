@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -59,7 +62,7 @@ public class Interests extends Activity {
 
 
 
-        interestTextView.setLoadingIndicator((android.widget.ProgressBar) findViewById(R.id.pb_loading_indicator_interest));
+        interestTextView.setLoadingIndicator((android.widget.ProgressBar) findViewById(R.id.pb_loading_indicator));
 
         interestTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -129,7 +132,15 @@ public class Interests extends Activity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Interests.this, "Course removed!: " + selectedInterest, Toast.LENGTH_SHORT).show();
+                            LayoutInflater inflater = getLayoutInflater();
+                            View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
+                            TextView text = (TextView) layout.findViewById(R.id.textToShow);
+                            text.setText("Removed " + selectedInterest + " ");
+                            Toast toast = new Toast(getApplicationContext());
+                            toast.setDuration(Toast.LENGTH_SHORT);
+                            toast.setView(layout);
+                            toast.show();
+                            //Toast.makeText(Interests.this, "Course removed!: " + selectedInterest, Toast.LENGTH_SHORT).show();
 
                             showInterestText(currentUser.getInterests());
                         }
