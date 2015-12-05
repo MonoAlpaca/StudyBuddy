@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Alpaca on 11/12/2015.
@@ -23,7 +24,9 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
     public String token;
     public String username;
     public String othername;
+    public String groupname;
     public String message;
+    public List<String> groupMembers;
 
     private String getChatBuilder(){
         Uri.Builder builder  = new Uri.Builder();
@@ -61,6 +64,41 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
 
     }
 
+    private String createGroupBuilder(){
+        Uri.Builder builder  = new Uri.Builder();
+        builder.scheme("http")
+                .authority("llama.bot.nu")
+                .appendPath(token)
+                .appendQueryParameter("name", groupname)
+                .appendQueryParameter("user", username);
+
+        Log.d(TAG, "URI: " + builder.toString());
+        return builder.toString();
+    }
+
+    private String addUserToGroupBuilder(String member){
+        Uri.Builder builder  = new Uri.Builder();
+        builder.scheme("http")
+                .authority("llama.bot.nu")
+                .appendPath("addUserToGroup")
+                .appendQueryParameter("name", groupname)
+                .appendQueryParameter("user", member);
+
+        Log.d(TAG, "URI: " + builder.toString());
+        return builder.toString();
+    }
+
+    private String getGroupChatBuilder(){
+        Uri.Builder builder  = new Uri.Builder();
+        builder.scheme("http")
+                .authority("llama.bot.nu")
+                .appendPath("getGroupMessages")
+                .appendQueryParameter("name", groupname);
+
+        Log.d(TAG, "URI: " + builder.toString());
+        return builder.toString();
+    }
+
     @Override
     protected void onPreExecute() {
 
@@ -69,12 +107,22 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
     @Override
     protected ArrayList<Message> doInBackground(Object... params) {
         token = (String) params[0];
-        username = (String) params[1];
-        if(token.equals("getMessages") || token.equals("addMessage")) {
-            othername = (String) params[2];
-            if (token.equals("addMessage")) {
-                message = (String) params[3];
+        if(token.equals("createGroup")) {
+            username = (String) params[2];
+            groupname = (String) params[1];
+            groupMembers = (List<String>) params[3];
 
+        }else if(token.equals("getGroupMessages")){
+            groupname = (String) params[1];
+        }
+        else {
+            username = (String) params[1];
+            if (token.equals("getMessages") || token.equals("addMessage")) {
+                othername = (String) params[2];
+                if (token.equals("addMessage")) {
+                    message = (String) params[3];
+
+                }
             }
         }
 
@@ -89,7 +137,22 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
 
             }else if(token.equals("getChatList")) {
                 js = new URL(getChatBuilder());
+            }else if(token.equals("createGroup")) {
+                js = new URL(createGroupBuilder());
+                URLConnection jc = js.openConnection();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
+
+                // iterate via "for loop"
+                for (int i = 0; i < groupMembers.size(); i++) {
+                    js = new URL(addUserToGroupBuilder(groupMembers.get(i)));
+                    reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
+                    jc = js.openConnection();
+                }
+                return null;
+            }else if(token.equals("getGroupMessages")){
+                js = new URL(getGroupChatBuilder());
             }
+
 
             URLConnection jc = js.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));

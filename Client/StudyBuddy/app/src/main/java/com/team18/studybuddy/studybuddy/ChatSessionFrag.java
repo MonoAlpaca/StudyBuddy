@@ -120,10 +120,17 @@ public class ChatSessionFrag extends Activity {
         if(mMessages != null) {
             mMessages.clear();
         }
-        Object params[] = new Object[3];
-        params[0] = "getMessages";
-        params[1] = CUR_USERNAME;
-        params[2] = CUR_OTHER;
+        Object params[];
+        if(CUR_OTHER.contains(",")) {
+            params = new Object[2];
+            params[0] = "getGroupMessages";
+            params[1] = CUR_OTHER;
+        }else {
+            params = new Object[3];
+            params[0] = "getMessages";
+            params[1] = CUR_USERNAME;
+            params[2] = CUR_OTHER;
+        }
         try {
             ArrayList<Message> newMessages = new ChatMotto().execute(params).get();
             if(newMessages != null) {
