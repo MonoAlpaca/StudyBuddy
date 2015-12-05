@@ -164,9 +164,7 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, profile).addToBackStack(null)
                         .commit();
 
-                ImageView pic = (ImageView) findViewById(R.id.profilePicture);
-
-                //Picasso.with(getContext()).load(getProfileUrl(message.getUserId())).into(profileView);
+                
 
                 setProfile = (ISetTextInFragment) profile;
                 if (setProfile == null) {
