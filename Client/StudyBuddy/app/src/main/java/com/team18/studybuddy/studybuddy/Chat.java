@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -82,10 +84,29 @@ public class Chat extends Fragment{
                 .setCancelable(false)
                 .setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 // get user input and set it to result
                                 // edit text
                                 OTHER_USERNAME = userInput.getText().toString();
+
+                                if (OTHER_USERNAME.contains(",")) {
+                                    List<String> groupOfPeople = Arrays.asList(OTHER_USERNAME.split("\\s*,\\s*"));
+
+                                    Object params[] = new Object[4];
+                                    params[0] = "createGroup";
+                                    params[1] = OTHER_USERNAME;
+                                    params[2] = CUR_USERNAME;
+                                    params[3] = groupOfPeople;
+                                    try {
+                                        mMessages = new ChatMotto().execute(params).get();
+
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    } catch (ExecutionException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
                                 Intent j = new Intent(rootView.getContext(), ChatSessionFrag.class);
                                 j.putExtra("me", CUR_USERNAME);
 
@@ -95,7 +116,7 @@ public class Chat extends Fragment{
                         })
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         });
@@ -115,7 +136,8 @@ public class Chat extends Fragment{
                         Message currentMessage = (Message) parent.getItemAtPosition(position);
                         if(currentMessage.getUserId().equals("createNewChat")) {
                             alertDialog.show();
-
+                        }else if (currentMessage.getUserId().equals("createNewGroupChat")) {
+                            alertDialog.show();
                         }else{
                             OTHER_USERNAME = currentMessage.getUserId();
                             Intent j = new Intent(rootView.getContext(), ChatSessionFrag.class);
@@ -137,6 +159,11 @@ public class Chat extends Fragment{
                                                         }
                                                     }
                 );
+                Message createGroupMessage = new Message();
+                createGroupMessage.setUserId("createNewGroupChat");
+                createGroupMessage.setBody("Click to create new group chat");
+                mMessages.add(createGroupMessage);
+
                 Message createMessage = new Message();
                 createMessage.setUserId("createNewChat");
                 createMessage.setBody("Click to create new chat");
