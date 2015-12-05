@@ -38,6 +38,17 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
         return builder.toString();
 
     }
+    private String getUserByCourseBuilder(){
+        Uri.Builder builder  = new Uri.Builder();
+        builder.scheme("http")
+                .authority("llama.bot.nu")
+                .appendPath(token)
+                .appendQueryParameter("course_list", username);
+        Log.d(TAG, "URI: " + builder.toString());
+        return builder.toString();
+
+    }
+
 
     private String getBuilder(){
         Uri.Builder builder  = new Uri.Builder();
@@ -151,6 +162,8 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
                 return null;
             }else if(token.equals("getGroupMessages")){
                 js = new URL(getGroupChatBuilder());
+            }else if(token.equals("getUserByCourse")){
+                js = new URL(getUserByCourseBuilder());
             }
 
 
@@ -172,7 +185,7 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
         }
         ArrayList<Message> currentUser = new ArrayList<>();
 
-        if(token.equals("getChatList")) {
+        if(token.equals("getChatList") || token.equals("getUserByCourse")) {
              ChatListJsonMotto getMessages = new ChatListJsonMotto();
             Log.d(TAG, content.toString());
 

@@ -134,6 +134,17 @@ public class Courses extends Activity {
             }
 
         });
+        courseField.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent coursePage = new Intent(Courses.this, CoursePage.class);
+                UserClasses selectedCourse = (UserClasses) parent.getItemAtPosition(position);
+                coursePage.putExtra("course", selectedCourse.getName().toString());
+                coursePage.putExtra("username", CUR_USERNAME);
+
+                startActivity(coursePage);
+            }
+        });
         courseField.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
