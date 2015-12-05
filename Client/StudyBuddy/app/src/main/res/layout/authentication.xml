@@ -3,64 +3,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical|center_horizontal">
+    android:background="@color/white"
+    android:gravity="center_vertical|center_horizontal"
+    android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to StudyBuddy!"
-        android:textSize="20dp"
-        android:id="@+id/welcomeMessage"
+    <ImageView
+        android:layout_width="175dp"
+        android:layout_height="125dp"
+        android:src="@drawable/logo_gold"
+        android:id="@+id/sblogo"
         android:layout_gravity="center_horizontal" />
 
-    <TextView
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please login using your Purdue Career Account"
-        android:gravity="center"
-        android:id="@+id/loginMessage"
+        android:id="@+id/loginLoad"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/black"/>
+
+    <ImageView
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/purdueLogo"
+        android:src="@drawable/purdue_logo"
         android:layout_gravity="center_horizontal" />
 
     <EditText
-        android:layout_width="317dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:hint="Purdue email"
+        android:hint=" purdue email"
         android:id="@+id/purdueEmail"
         android:selectAllOnFocus="true"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal" />
+        android:gravity="center_vertical"
+        android:background="@color/light_grey"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/loginLoad"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:typeface="normal" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
         android:inputType="textPassword"
         android:ems="10"
-        android:hint="Password"
+        android:hint=" password"
         android:id="@+id/purduePassword"
         android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:imeOptions="actionSend"/>
+        android:gravity="center_vertical"
+        android:imeOptions="actionSend"
+        android:background="@color/light_grey"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/purdueEmail"
+        android:layout_alignLeft="@+id/purdueEmail"
+        android:layout_alignStart="@+id/purdueEmail"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:typeface="normal" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/loginLoad"
-            android:layout_gravity="center_horizontal"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:text="Buddy!"
-            android:id="@+id/loginButton"
-            android:layout_gravity="center_horizontal" />
-    </FrameLayout>
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:background="@color/old_gold"
+        android:text="login"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:id="@+id/loginButton"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/purduePassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp" />
 
 </LinearLayout>

@@ -3,6 +3,7 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/logo_background"
     android:weightSum="1">
 
     <GridLayout
@@ -29,7 +30,8 @@
             android:layout_column="1"
             android:gravity="center_vertical|left"
             android:padding="10dp"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleSmall"
@@ -39,20 +41,35 @@
             android:layout_row="0"
             android:layout_column="2"
             android:visibility="visible"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/black" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/logo1"
+            android:src="@drawable/sb_gold"
+            android:layout_row="0"
+            android:layout_column="9" />
     </GridLayout>
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="106dp"
         android:layout_column="0"
         android:layout_row="1"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="Bio"
+            android:text="About Me"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:id="@+id/bioText"
             android:layout_row="1"
@@ -61,17 +78,22 @@
 
         <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@color/old_gold"
             android:onClick="updateBio"
-            android:text="Update Bio"
+            android:text="update"
             android:id="@+id/updateBio"
             android:layout_row="1"
             android:layout_column="1" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:hint="Write about yourself here"
             android:textSize="15dp"
             android:id="@+id/profileBio"
@@ -93,9 +115,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="Courses"
+            android:text="My Courses"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:id="@+id/coursesText"
+            android:textColor="@color/black"
             android:layout_row="3"
             android:layout_column="0"
             android:layout_columnSpan="1" />
@@ -119,8 +143,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="Interests"
+            android:text="My Interests"
+            android:textSize="16sp"
             android:onClick="onInterestsClick"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:id="@+id/interestsText"
             android:layout_row="5"

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -159,7 +160,15 @@ public class Courses extends Activity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Courses.this, "Course removed!: " + selectedCourse.getName(), Toast.LENGTH_SHORT).show();
+                            LayoutInflater inflater = getLayoutInflater();
+                            View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
+                            TextView text = (TextView) layout.findViewById(R.id.textToShow);
+                            text.setText("Removed " + selectedCourse.getName() + " ");
+                            Toast toast = new Toast(getApplicationContext());
+                            toast.setDuration(Toast.LENGTH_SHORT);
+                            toast.setView(layout);
+                            toast.show();
+                            //Toast.makeText(Courses.this, "Course removed!: " + selectedCourse.getName(), Toast.LENGTH_SHORT).show();
 
                             showCourseText(currentUser.getCourses());
                         }

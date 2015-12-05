@@ -28,8 +28,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -118,7 +121,15 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onBackPressed() {
         if(count == 0){
-            Toast.makeText(MainActivity.this, "Press back one more time to logout", Toast.LENGTH_SHORT).show();
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
+            TextView text = (TextView) layout.findViewById(R.id.textToShow);
+            text.setText("Press back again to logout ");
+            Toast toast = new Toast(getApplicationContext());
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setView(layout);
+            toast.show();
+            //Toast.makeText(MainActivity.this, "Press back one more time to logout", Toast.LENGTH_SHORT).show();
 
         }
         count++;
@@ -139,7 +150,6 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         try {
-
             updateCurrentUser();
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -153,6 +163,8 @@ public class MainActivity extends ActionBarActivity
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, profile).addToBackStack(null)
                         .commit();
+
+                
 
                 setProfile = (ISetTextInFragment) profile;
                 if (setProfile == null) {
@@ -175,12 +187,9 @@ public class MainActivity extends ActionBarActivity
 
                         @Override
                         public void run() {
-
                             setProfile.disableProgess();
-
                         }
                     }, 3000);
-
                 }
                 break;
             case 1:
@@ -237,8 +246,15 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 public void run() {
                     if(bioUpdated) {
-                        Toast.makeText(MainActivity.this, "Updated your bio!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "Update bio has succeed");
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
+                        TextView text = (TextView) layout.findViewById(R.id.textToShow);
+                        text.setText("Updated your bio! ");
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setDuration(Toast.LENGTH_SHORT);
+                        toast.setView(layout);
+                        toast.show();
+                        //Toast.makeText(MainActivity.this, "Updated your bio!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }, 1000);
