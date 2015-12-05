@@ -92,7 +92,7 @@ public class Chat extends Fragment{
                                 if (OTHER_USERNAME.contains(",")) {
                                     List<String> groupOfPeople = Arrays.asList(OTHER_USERNAME.split("\\s*,\\s*"));
 
-                                    Object params[] = new Object[2];
+                                    Object params[] = new Object[4];
                                     params[0] = "createGroup";
                                     params[1] = OTHER_USERNAME;
                                     params[2] = CUR_USERNAME;

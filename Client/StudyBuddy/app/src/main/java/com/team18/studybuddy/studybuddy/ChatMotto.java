@@ -88,6 +88,17 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
         return builder.toString();
     }
 
+    private String getGroupChatBuilder(){
+        Uri.Builder builder  = new Uri.Builder();
+        builder.scheme("http")
+                .authority("llama.bot.nu")
+                .appendPath("getGroupMessages")
+                .appendQueryParameter("name", groupname);
+
+        Log.d(TAG, "URI: " + builder.toString());
+        return builder.toString();
+    }
+
     @Override
     protected void onPreExecute() {
 
@@ -101,6 +112,8 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
             groupname = (String) params[1];
             groupMembers = (List<String>) params[3];
 
+        }else if(token.equals("getGroupMessages")){
+            groupname = (String) params[1];
         }
         else {
             username = (String) params[1];
@@ -127,13 +140,19 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
             }else if(token.equals("createGroup")) {
                 js = new URL(createGroupBuilder());
                 URLConnection jc = js.openConnection();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
+
                 // iterate via "for loop"
                 for (int i = 0; i < groupMembers.size(); i++) {
                     js = new URL(addUserToGroupBuilder(groupMembers.get(i)));
+                    reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
                     jc = js.openConnection();
                 }
-            return null;
+                return null;
+            }else if(token.equals("getGroupMessages")){
+                js = new URL(getGroupChatBuilder());
             }
+
 
             URLConnection jc = js.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
