@@ -9,10 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -30,7 +35,18 @@ public class Profile extends Activity {
     ListView courseField;
     Button editBio;
     ProgressBar loadingBar;
-
+    private static String getProfileUrl(final String userId) {
+        String hex = "";
+        try {
+            final MessageDigest digest = MessageDigest.getInstance("MD5");
+            final byte[] hash = digest.digest(userId.getBytes());
+            final BigInteger bigInt = new BigInteger(hash);
+            hex = bigInt.abs().toString(16);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "http://www.gravatar.com/avatar/" + hex + "?d=identicon";
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +71,9 @@ public class Profile extends Activity {
         interestField = (ListView) findViewById(R.id.profileInterests);
         interestField.setEnabled(false);
         loadingBar = (ProgressBar) findViewById(R.id.loading);
+
+        ImageView profileView = (ImageView) findViewById(R.id.profilePicture);
+        Picasso.with(this).load(getProfileUrl(CUR_USERNAME)).into(profileView);
 
         new Handler().postDelayed(new Runnable() {
             @Override
