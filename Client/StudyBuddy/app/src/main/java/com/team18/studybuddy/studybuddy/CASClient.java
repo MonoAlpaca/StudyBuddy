@@ -33,6 +33,10 @@ public class CASClient extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/OpenSans-Light.ttf");
+        TypefaceUtil.overrideFont(getApplicationContext(), "MONOSPACE", "fonts/OpenSans-Light.ttf");
+        TypefaceUtil.overrideFont(getApplicationContext(), "SANS", "fonts/OpenSans-Light.ttf");
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication);
         HttpClient httpClient = HttpClientBuilder.create().setRedirectStrategy(new DefaultRedirectStrategy()).build();
