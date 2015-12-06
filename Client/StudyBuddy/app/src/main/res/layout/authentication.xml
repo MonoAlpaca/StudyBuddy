@@ -49,8 +49,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="normal"
-        android:textColor="@color/black"
-        android:typeface="normal" />
+        android:textColor="@color/black" />
 
     <EditText
         android:layout_width="300dp"
@@ -68,8 +67,7 @@
         android:layout_alignLeft="@+id/purdueEmail"
         android:layout_alignStart="@+id/purdueEmail"
         android:textStyle="normal"
-        android:textColor="@color/black"
-        android:typeface="normal" />
+        android:textColor="@color/black" />
 
     <Button
         android:layout_width="130dp"

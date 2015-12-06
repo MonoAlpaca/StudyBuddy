@@ -161,12 +161,12 @@ public class Chat extends Fragment{
                 );
                 Message createGroupMessage = new Message();
                 createGroupMessage.setUserId("createNewGroupChat");
-                createGroupMessage.setBody("Click to create new group chat");
+                createGroupMessage.setBody("Create Group Chat");
                 mMessages.add(createGroupMessage);
 
                 Message createMessage = new Message();
                 createMessage.setUserId("createNewChat");
-                createMessage.setBody("Click to create new chat");
+                createMessage.setBody("Create User Chat");
                 mMessages.add(createMessage);
                 mAdapter = new ChatListAdapter(rootView.getContext(), CUR_USERNAME, mMessages);
 

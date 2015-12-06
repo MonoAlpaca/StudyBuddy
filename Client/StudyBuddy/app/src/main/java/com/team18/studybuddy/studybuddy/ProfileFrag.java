@@ -13,17 +13,22 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -41,12 +46,26 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
     ListView courseField;
     ProgressBar loadingBar;
 
+
     View rootView;
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
+    private static String getProfileUrl(final String userId) {
+        String hex = "";
+        try {
+            final MessageDigest digest = MessageDigest.getInstance("MD5");
+            final byte[] hash = digest.digest(userId.getBytes());
+            final BigInteger bigInt = new BigInteger(hash);
+            hex = bigInt.abs().toString(16);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "http://www.gravatar.com/avatar/" + hex + "?d=identicon";
+    }
+
     public static ProfileFrag newInstance(int sectionNumber) {
         ProfileFrag fragment = new ProfileFrag();
         Bundle args = new Bundle();
@@ -100,6 +119,8 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
     @Override
     public void showNameText(String testToShow) {
         nameField.setText(testToShow);
+        ImageView profileView = (ImageView) rootView.findViewById(R.id.profilePicture);
+        Picasso.with(rootView.getContext()).load(getProfileUrl(testToShow)).into(profileView);
     }
 
     @Override
