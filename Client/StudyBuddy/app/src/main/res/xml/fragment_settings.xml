@@ -17,14 +17,6 @@
         android:title="User Settings"
         android:key="settingsUser">
 
-        <ListPreference
-            android:title="Theme"
-            android:summary="Change the StudyBuddy theme"
-            android:key="theme"
-            android:defaultValue="1"
-            android:entries="@array/colorArray"
-            android:entryValues="@array/colorValues" />
-
         <EditTextPreference
             android:title="Block List"
             android:summary="Block users"
