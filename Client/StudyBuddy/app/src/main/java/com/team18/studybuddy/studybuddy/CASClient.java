@@ -32,7 +32,8 @@ import ch.boye.httpclientandroidlib.impl.client.HttpClientBuilder;
 public class CASClient extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
-
+        TypefaceUtil.overrideFont(getApplicationContext(), "DEFAULT", "fonts/OpenSans-Light.ttf");
+        TypefaceUtil.overrideFont(getApplicationContext(), "DEFAULT_BOLD", "fonts/OpenSans-Bold.ttf");// font from assets: "assets/fonts/Roboto-Regular.ttf
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication);
         HttpClient httpClient = HttpClientBuilder.create().setRedirectStrategy(new DefaultRedirectStrategy()).build();
