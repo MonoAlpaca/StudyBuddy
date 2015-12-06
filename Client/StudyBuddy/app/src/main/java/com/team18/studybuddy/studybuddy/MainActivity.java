@@ -164,8 +164,6 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, profile).addToBackStack(null)
                         .commit();
 
-                
-
                 setProfile = (ISetTextInFragment) profile;
                 if (setProfile == null) {
                     Log.d(TAG, "Null Profile~~~~");
