@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="MyAppTheme" parent="@android:style/Theme.Holo.Light">
-        <!-- you should set typeface which you want to override with TypefaceUtil -->
-        <item name="android:typeface">normal</item>
-    </style>
-</resources>

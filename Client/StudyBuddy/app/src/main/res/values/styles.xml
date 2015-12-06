@@ -6,6 +6,7 @@
         <item name="colorAccent">@color/old_gold</item>
         <item name="android:windowBackground">@color/light_grey</item>
         <item name="android:colorBackground">@color/light_grey</item>
+        <item name="android:typeface">serif</item>
     </style>
     <attr name="progressButtonStyle" format="reference" />
 
