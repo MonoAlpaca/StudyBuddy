@@ -168,7 +168,6 @@ public class Courses extends Activity {
                             toast.setDuration(Toast.LENGTH_SHORT);
                             toast.setView(layout);
                             toast.show();
-                            //Toast.makeText(Courses.this, "Course removed!: " + selectedCourse.getName(), Toast.LENGTH_SHORT).show();
 
                             showCourseText(currentUser.getCourses());
                         }

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical|center_horizontal"
+
     android:weightSum="1">
 
     <ImageView
@@ -20,8 +21,6 @@
         android:id="@+id/loginLoad"
         android:layout_gravity="center_horizontal"
         android:visibility="invisible"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:indeterminate="true"
         android:indeterminateTintMode="src_atop"
         android:indeterminateTint="@color/black"/>
@@ -44,7 +43,7 @@
         android:selectAllOnFocus="true"
         android:gravity="center_vertical"
         android:background="@color/light_grey"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/loginLoad"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -81,8 +80,6 @@
         android:id="@+id/loginButton"
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/purduePassword"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="30dp" />
 
 </LinearLayout>
