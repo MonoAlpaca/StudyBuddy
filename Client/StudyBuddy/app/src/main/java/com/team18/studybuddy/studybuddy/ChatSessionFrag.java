@@ -39,6 +39,15 @@ public class ChatSessionFrag extends Activity {
 
 
     private Handler handler = new Handler();
+    private void scrollMyListViewToBottom() {
+        lvChat.post(new Runnable() {
+            @Override
+            public void run() {
+                // Select the last row so it will scroll into view...
+                lvChat.setSelection(lvChat.getCount() - 1);
+            }
+        });
+    }
 
     private void setupMessagePosting() {
 
@@ -133,14 +142,15 @@ public class ChatSessionFrag extends Activity {
         }
         try {
             ArrayList<Message> newMessages = new ChatMotto().execute(params).get();
+            scrollMyListViewToBottom();
             if(newMessages != null) {
                 mMessages.addAll(newMessages);
-                mAdapter.notifyDataSetChanged();
                 if(newMessages.size()-1 > 0) {
+                    mAdapter.notifyDataSetChanged();
                     String name = newMessages.get(newMessages.size() - 1).getUserId();
                     if (!name.equals(CUR_USERNAME)) {
                         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-
+                        scrollMyListViewToBottom();
                         if (pref.getBoolean("notificationSettings", true)) {
                             Intent intent = new Intent(this, Chat.class);
                             PendingIntent pending = PendingIntent.getActivity(this, 0, intent, 0);

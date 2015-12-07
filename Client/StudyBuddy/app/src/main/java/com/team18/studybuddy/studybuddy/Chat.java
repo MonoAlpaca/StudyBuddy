@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -120,9 +121,9 @@ public class Chat extends Fragment{
                                 dialog.cancel();
                             }
                         });
-
         // create alert dialog
         alertDialog = alertDialogBuilder.create();
+
 
         // show it
 
@@ -136,8 +137,12 @@ public class Chat extends Fragment{
                         Message currentMessage = (Message) parent.getItemAtPosition(position);
                         if(currentMessage.getUserId().equals("createNewChat")) {
                             alertDialog.show();
+                            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
                         }else if (currentMessage.getUserId().equals("createNewGroupChat")) {
                             alertDialog.show();
+                            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
                         }else{
                             OTHER_USERNAME = currentMessage.getUserId();
                             Intent j = new Intent(rootView.getContext(), ChatSessionFrag.class);
