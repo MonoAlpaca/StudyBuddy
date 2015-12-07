@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical|center_horizontal"
+
     android:weightSum="1">
 
     <ImageView
@@ -11,11 +12,14 @@
         android:layout_height="125dp"
         android:src="@drawable/logo_gold"
         android:id="@+id/sblogo"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-50dp"
+        android:layout_marginBottom="50dp" />
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"
@@ -31,8 +35,8 @@
             android:indeterminateTint="@color/black"/>
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:id="@+id/purdueLogo"
             android:src="@drawable/purdue_logo"
             android:layout_gravity="center_horizontal"
@@ -50,7 +54,6 @@
         android:selectAllOnFocus="true"
         android:gravity="center_vertical"
         android:background="@color/light_grey"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/loginLoad"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -87,8 +90,6 @@
         android:id="@+id/loginButton"
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/purduePassword"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

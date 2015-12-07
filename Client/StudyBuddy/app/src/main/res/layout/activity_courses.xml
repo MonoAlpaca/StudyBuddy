@@ -2,29 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
 
             <FrameLayout
-                android:layout_row="1"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignBottom="@+id/addCourse">
+                android:layout_gravity="center_horizontal">
 
                 <com.team18.studybuddy.studybuddy.DelayAutoCompleteTextView
                     android:id="@+id/subjectComplete"
-                    android:layout_width="280dp"
+                    android:layout_width="255dp"
                     android:layout_height="25dp"
                     android:imeOptions="flagNoExtractUi|actionSearch"
                     android:inputType="textCapSentences"
                     android:background="@color/light_grey"
                     android:layout_marginLeft="5dp"
+                    android:dropDownVerticalOffset="5dp"
+                    android:dropDownHeight="300dp"
                     android:hint="Enter Course"
                     android:layout_gravity="center_vertical"
-                    android:paddingLeft="5dp">
+                    android:paddingLeft="5dp"
+                    android:layout_marginRight="5dp">
 
                     <requestFocus />
                 </com.team18.studybuddy.studybuddy.DelayAutoCompleteTextView>
@@ -36,8 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:visibility="gone"
-                    android:layout_marginLeft="75dp"
-                    android:layout_marginTop="3dp" />
+                    android:layout_marginLeft="68dp" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -48,9 +47,6 @@
                     android:textAllCaps="false"
                     android:textSize="12sp"
                     android:id="@+id/addCourse"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="false"
                     android:background="@color/old_gold"
                     android:textColor="@color/black"
                     android:layout_gravity="right|center_vertical" />
@@ -65,19 +61,16 @@
             android:textStyle="bold"
             android:id="@+id/coursesText"
             android:textColor="@color/black"
-            android:layout_row="1"
-            android:layout_column="0"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp" />
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="440dp"
+            android:layout_height="430dp"
             android:id="@+id/courseList"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_gravity="bottom"
-            android:divider="@android:color/transparent" />
+            android:layout_gravity="top"
+            android:divider="@android:color/transparent"
+            android:layout_weight="0.74" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,9 +80,8 @@
             android:textColor="@color/black"
             android:textStyle="italic"
             android:id="@+id/textView11"
-            android:layout_row="3"
-            android:layout_column="0"
-            android:layout_gravity="center" />
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp" />
 
     <!-- <AutoCompleteTextView
          android:id="@+id/subjectComplete"

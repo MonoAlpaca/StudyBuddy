@@ -140,7 +140,6 @@ public class Interests extends Activity {
                             toast.setDuration(Toast.LENGTH_SHORT);
                             toast.setView(layout);
                             toast.show();
-                            //Toast.makeText(Interests.this, "Course removed!: " + selectedInterest, Toast.LENGTH_SHORT).show();
 
                             showInterestText(currentUser.getInterests());
                         }

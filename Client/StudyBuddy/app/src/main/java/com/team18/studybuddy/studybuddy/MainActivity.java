@@ -129,7 +129,7 @@ public class MainActivity extends ActionBarActivity
             LayoutInflater inflater = getLayoutInflater();
             View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
             TextView text = (TextView) layout.findViewById(R.id.textToShow);
-            text.setText("Press back again to logout ");
+            text.setText("Press back again to logout");
             Toast toast = new Toast(getApplicationContext());
             toast.setDuration(Toast.LENGTH_SHORT);
             toast.setView(layout);
@@ -251,7 +251,7 @@ public class MainActivity extends ActionBarActivity
                         LayoutInflater inflater = getLayoutInflater();
                         View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
                         TextView text = (TextView) layout.findViewById(R.id.textToShow);
-                        text.setText("Updated your bio! ");
+                        text.setText("Updated your bio!");
                         Toast toast = new Toast(getApplicationContext());
                         toast.setDuration(Toast.LENGTH_SHORT);
                         toast.setView(layout);
