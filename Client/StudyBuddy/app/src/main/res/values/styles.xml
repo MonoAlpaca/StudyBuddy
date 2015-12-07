@@ -11,8 +11,23 @@
         <item name="colorPrimaryDark">@color/black</item>
         <item name="android:textColorPrimaryInverse">@color/black</item>
         <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorHighlight">@color/old_gold</item>
+        <item name="android:actionMenuTextColor">@color/black</item>
+        <item name="titleTextColor">@color/black</item>
+        <item name="android:textColorHighlightInverse">@color/old_gold</item>
+        <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
+        <item name="actionMenuTextColor">@color/black</item>
+
+    </style>
+    <style name="AppTheme.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/AppTheme.ActionBar.Text</item>
+    </style>
+
+    <style name="AppTheme.ActionBar.Text" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/black</item>
     </style>
     <attr name="progressButtonStyle" format="reference" />
+
 
     <declare-styleable name="ProgressButton">
         <attr name="android:clickable" />
@@ -33,5 +48,9 @@
         <item name="defaultFontColor">@color/black_color</item>
         <item name="defaultText">Login</item>
     </style>
+
+
+
+
 
 </resources>
