@@ -6,10 +6,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,7 +90,6 @@ public class Chat extends Fragment{
                                 // get user input and set it to result
                                 // edit text
                                 OTHER_USERNAME = userInput.getText().toString();
-
                                 if (OTHER_USERNAME.contains(",")) {
                                     List<String> groupOfPeople = Arrays.asList(OTHER_USERNAME.split("\\s*,\\s*"));
 
@@ -120,9 +121,9 @@ public class Chat extends Fragment{
                                 dialog.cancel();
                             }
                         });
-
         // create alert dialog
         alertDialog = alertDialogBuilder.create();
+
 
         // show it
 
@@ -136,8 +137,12 @@ public class Chat extends Fragment{
                         Message currentMessage = (Message) parent.getItemAtPosition(position);
                         if(currentMessage.getUserId().equals("createNewChat")) {
                             alertDialog.show();
+                            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
                         }else if (currentMessage.getUserId().equals("createNewGroupChat")) {
                             alertDialog.show();
+                            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
                         }else{
                             OTHER_USERNAME = currentMessage.getUserId();
                             Intent j = new Intent(rootView.getContext(), ChatSessionFrag.class);

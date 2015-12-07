@@ -14,23 +14,32 @@
         android:id="@+id/sblogo"
         android:layout_gravity="center_horizontal" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/loginLoad"
-        android:layout_gravity="center_horizontal"
-        android:visibility="invisible"
-        android:indeterminate="true"
-        android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/black"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:id="@+id/purdueLogo"
-        android:src="@drawable/purdue_logo"
-        android:layout_gravity="center_horizontal" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/loginLoad"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/black"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/purdueLogo"
+            android:src="@drawable/purdue_logo"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp" />
+    </FrameLayout>
 
     <EditText
         android:layout_width="300dp"

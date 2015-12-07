@@ -1,6 +1,7 @@
 package com.team18.studybuddy.studybuddy;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.EditTextPreference;
@@ -37,6 +38,18 @@ public class Settings extends PreferenceActivity {
             CUR_USERNAME = extras.getString("username");
         }
         final EditTextPreference dialog = (EditTextPreference) findPreference("blockList");
+        dialog.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Button positive = (Button) dialog.getDialog().findViewById(android.R.id.button1);
+                Button negative = (Button) dialog.getDialog().findViewById(android.R.id.button2);
+                positive.setTextColor(Color.BLACK);
+                negative.setTextColor(Color.BLACK);
+
+                return false;
+            }
+        });
+
         dialog.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -71,9 +84,10 @@ public class Settings extends PreferenceActivity {
                                 toast.setDuration(Toast.LENGTH_SHORT);
                                 toast.setView(layout);
                                 toast.show();
+
                             }
                         }
-                    },2000);
+                    }, 2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

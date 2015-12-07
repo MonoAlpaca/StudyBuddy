@@ -60,6 +60,7 @@ public class MainActivity extends ActionBarActivity
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     int count = 0;
+    int selected = 0;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -151,6 +152,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+        selected = position;
         try {
             updateCurrentUser();
         } catch (ExecutionException e) {
@@ -329,20 +331,14 @@ public class MainActivity extends ActionBarActivity
         }
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onResume() {
+        super.onResume();
+        if(selected == 1 || selected == 3 || selected == 6){
+                onNavigationDrawerItemSelected(0);
+        }else {
+            onNavigationDrawerItemSelected(selected);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**
