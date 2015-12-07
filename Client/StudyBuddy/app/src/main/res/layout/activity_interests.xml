@@ -3,15 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:divider="@android:color/transparent">
+    android:divider="@android:color/transparent"
+    android:weightSum="1">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignBottom="@+id/addInterest">
+                android:layout_gravity="center_horizontal">
+
+                <com.team18.studybuddy.studybuddy.DelayAutoCompleteTextView
+                    android:id="@+id/interestComplete"
+                    android:layout_width="255dp"
+                    android:layout_height="25dp"
+                    android:imeOptions="flagNoExtractUi|actionSearch"
+                    android:inputType="textCapSentences"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:dropDownVerticalOffset="5dp"
+                    android:background="@color/light_grey"
+                    android:hint="Enter Interest"
+                    android:paddingLeft="5dp">
+
+                    <requestFocus />
+                </com.team18.studybuddy.studybuddy.DelayAutoCompleteTextView>
 
                 <ProgressBar
                     android:id="@+id/pb_loading_indicator"
@@ -20,8 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:visibility="gone"
-                    android:layout_marginLeft="75dp"
-                    android:layout_marginTop="2dp" />
+                    android:layout_marginLeft="68dp" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -32,26 +45,9 @@
                     android:textAllCaps="false"
                     android:textSize="12sp"
                     android:id="@+id/addInterest"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="false"
                     android:background="@color/old_gold"
                     android:textColor="@color/black"
                     android:layout_gravity="right|center_vertical" />
-
-                <com.team18.studybuddy.studybuddy.DelayAutoCompleteTextView
-                    android:id="@+id/interestComplete"
-                    android:layout_width="275dp"
-                    android:layout_height="25dp"
-                    android:imeOptions="flagNoExtractUi|actionSearch"
-                    android:inputType="textCapSentences"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:background="@color/light_grey"
-                    android:hint="Enter Interest">
-
-                    <requestFocus />
-                </com.team18.studybuddy.studybuddy.DelayAutoCompleteTextView>
 
             </FrameLayout>
 
@@ -63,20 +59,17 @@
             android:textStyle="bold"
             android:id="@+id/coursesText"
             android:textColor="@color/black"
-            android:layout_row="1"
-            android:layout_column="0"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp" />
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="440dp"
+            android:layout_height="415dp"
             android:id="@+id/interestList"
             android:clickable="true"
-            android:layout_row="2"
-            android:layout_column="0"
             android:layout_gravity="top"
-            android:divider="@android:color/transparent" />
+            android:divider="@android:color/transparent"
+            android:layout_weight="0.83" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,9 +79,7 @@
             android:textColor="@color/black"
             android:textStyle="italic"
             android:id="@+id/textView11"
-            android:layout_row="3"
-            android:layout_column="0"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom|center_horizontal"
             android:layout_marginTop="10dp" />
 
 </LinearLayout>
