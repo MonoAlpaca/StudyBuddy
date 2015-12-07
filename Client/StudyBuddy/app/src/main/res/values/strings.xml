@@ -24,7 +24,7 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="action_chat">Chat</string>
+    <string name="action_chat">CHAT</string>
 
     <string name="aboutText">\nStudyBuddy was created by Andy Chen, Abhijay Gupta, Joseph Miller,
         Nathan Scott, and Zebediah Wezensky in Professor Dunsmore\'s Fall 2015 CS307 course. \n\n\nVersion 1.012.1.10 \n</string>
