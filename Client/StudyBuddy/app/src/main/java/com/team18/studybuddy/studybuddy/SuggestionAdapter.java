@@ -52,8 +52,8 @@ public class SuggestionAdapter extends BaseAdapter implements Filterable {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.simple_dropdown_item_2line, parent, false);
         }
-        ((TextView) convertView.findViewById(R.id.text1)).setText(getItem(position).getId());
-        ((TextView) convertView.findViewById(R.id.text2)).setText(getItem(position).getName());
+        ((TextView) convertView.findViewById(R.id.text1)).setText("  " + getItem(position).getId());
+        ((TextView) convertView.findViewById(R.id.text2)).setText("  " + getItem(position).getName());
         return convertView;
     }
 
