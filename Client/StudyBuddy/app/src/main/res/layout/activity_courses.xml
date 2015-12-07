@@ -20,6 +20,7 @@
                     android:background="@color/light_grey"
                     android:layout_marginLeft="5dp"
                     android:dropDownVerticalOffset="5dp"
+                    android:dropDownHeight="300dp"
                     android:hint="Enter Course"
                     android:layout_gravity="center_vertical"
                     android:paddingLeft="5dp"
