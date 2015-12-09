@@ -30,7 +30,8 @@
         Clicking the button below will open an email client of your choosing with our information already filled out.
         Please feel free to share any and all feelings with us: good or bad we\'d love to know what you think!\n</string>
     <string name="aboutText">StudyBuddy was created by Andy Chen, Abhijay Gupta, Joseph Miller,
-        Nathan Scott, and Zebediah Wezensky in Professor Dunsmore\'s Fall 2015 CS307 course.\n\nVersion 1.012.1.10\n</string>
+        Nathan Scott, and Zebediah Wezensky in Professor Dunsmore\'s Fall 2015 CS307 course. Logo design by Keenan Wezensky.
+        Pretty sure Joseph\'s brother helped too, so thanks to him as well. \n\nVersion 1.012.1.10\n</string>
     <string name="descriptionText">StudyBuddy is meant to match Purdue students to each
         other by allowing users to choose courses they are enrolled in and see other users in the course.
         The matched students can then communicate through a chat system and
