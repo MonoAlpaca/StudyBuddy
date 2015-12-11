@@ -24,7 +24,7 @@ public class TypefaceUtil {
 
     protected static void replaceFont(String staticTypefaceFieldName,
                                       final Typeface newTypeface) {
-        if (Build.VERSION.SDK_INT <= 21) {
+        if (Build.VERSION.SDK_INT == 21) {
             Map<String, Typeface> newMap = new HashMap<String, Typeface>();
             newMap.put("sans-serif", newTypeface);
             try {

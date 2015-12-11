@@ -150,7 +150,7 @@ public class ProfileFrag extends Fragment implements ISetTextInFragment {
         courseField.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent coursePage = new Intent(rootView.getContext(), CoursePage.class);
+                Intent coursePage = new Intent(rootView.getContext(), ChatTab.class);
                 UserClasses selectedCourse = (UserClasses) parent.getItemAtPosition(position);
                 coursePage.putExtra("course", selectedCourse.getName().toString());
                 coursePage.putExtra("username", nameField.getText().toString());

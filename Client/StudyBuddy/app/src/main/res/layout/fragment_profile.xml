@@ -88,6 +88,7 @@
             android:textSize="12sp"
             android:textColor="@color/black"
             android:background="@color/old_gold"
+            android:onClick="updateBio"
             android:text="update"
             android:id="@+id/updateBio"
             android:layout_row="1"

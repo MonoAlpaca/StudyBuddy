@@ -13,16 +13,17 @@ import com.squareup.picasso.Picasso;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Alpaca on 11/12/2015.
+ * Created by Alpaca on 12/11/2015.
  */
-public class ChatListAdapter extends ArrayAdapter<Message> {
+public class FeedListAdapter extends ArrayAdapter<Message> {
     private String mUserId;
     private List<Message> messages;
 
-    public ChatListAdapter(Context context, String userId, List<Message> messages) {
+    public FeedListAdapter(Context context, String userId, List<Message> messages) {
         super(context, 0, messages);
         this.messages = messages;
         this.mUserId = userId;
@@ -32,34 +33,24 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         return messages.get(position);
     }
 
-
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).
-                    inflate(R.layout.chat_item, parent, false);
+                    inflate(R.layout.feed_item, parent, false);
             final ViewHolder holder = new ViewHolder();
-            holder.imageLeft = (ImageView)convertView.findViewById(R.id.ivProfileLeft);
-            holder.imageRight = (ImageView)convertView.findViewById(R.id.ivProfileRight);
-            holder.body = (TextView)convertView.findViewById(R.id.tvBody);
+            holder.imageLeft = (ImageView)convertView.findViewById(R.id.feedImage);
+            holder.feedName = (TextView)convertView.findViewById(R.id.feedUserID);;
+            holder.body = (TextView)convertView.findViewById(R.id.feedUserMessage);
             convertView.setTag(holder);
         }
         final Message message = getItem(position);
         final ViewHolder holder = (ViewHolder)convertView.getTag();
-        final boolean isMe = message.getUserId().equals(mUserId);
         // Show-hide image based on the logged-in user.
         // Display the profile image to the right for our user, left for other users.
-        if (isMe) {
-            holder.imageRight.setVisibility(View.VISIBLE);
-            holder.imageLeft.setVisibility(View.GONE);
-            holder.body.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-        } else {
-            holder.imageLeft.setVisibility(View.VISIBLE);
-            holder.imageRight.setVisibility(View.GONE);
-            holder.body.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-
-        }
-        final ImageView profileView = isMe ? holder.imageRight : holder.imageLeft;
+        final ImageView profileView = holder.imageLeft;
         Picasso.with(getContext()).load(getProfileUrl(message.getUserId())).into(profileView);
+        holder.feedName.setText(message.getUserId());
         holder.body.setText(message.getBody());
         return convertView;
     }
@@ -80,8 +71,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
 
     final class ViewHolder {
         public ImageView imageLeft;
-        public ImageView imageRight;
+        public TextView feedName;
         public TextView body;
     }
-
 }
