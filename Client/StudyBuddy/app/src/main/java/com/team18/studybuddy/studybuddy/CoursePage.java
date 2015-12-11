@@ -1,6 +1,7 @@
 package com.team18.studybuddy.studybuddy;
 
 import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class CoursePage extends Activity {
         setContentView(R.layout.activity_coursepage);
         final TextView courseName = (TextView) findViewById(R.id.courseName);
         courseName.setText(CUR_COURSE);
+
 
         courseUser = (ListView) findViewById(R.id.courseUser);
         mUsers = new ArrayList<Message>();

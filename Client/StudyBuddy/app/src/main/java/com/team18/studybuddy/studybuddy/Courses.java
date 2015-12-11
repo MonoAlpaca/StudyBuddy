@@ -18,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import ch.boye.httpclientandroidlib.client.HttpClient;
@@ -43,6 +45,7 @@ public class Courses extends Activity {
         params[1] = CUR_USERNAME;
         currentUser = new RetrieveMotto().execute(params).get();
     }
+
     protected void onCreate(Bundle b) {
         super.onCreate(b);
         setContentView(R.layout.activity_courses);
@@ -64,7 +67,6 @@ public class Courses extends Activity {
         final DelayAutoCompleteTextView subjectTextView = (DelayAutoCompleteTextView) findViewById(R.id.subjectComplete);
         subjectTextView.setThreshold(0);
         subjectTextView.setAdapter(new SuggestionAdapter(this, R.layout.simple_dropdown_item_2line, R.id.text1)); // 'this' is Activity instance
-
 
 
         subjectTextView.setLoadingIndicator((android.widget.ProgressBar) findViewById(R.id.pb_loading_indicator));
@@ -89,8 +91,6 @@ public class Courses extends Activity {
                 subjectTextView.setSelection(subjectTextView.getText().length());
             }
         });
-        subjectTextView.setText(" ");
-        subjectTextView.setText("");
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -108,14 +108,26 @@ public class Courses extends Activity {
                 params[1] = courseName.getId();
                 params[2] = courseName.getName();
 
+
                 Object params2[] = new Object[3];
                 params2[0] = "addUserCourse";
                 params2[1] = CUR_USERNAME;
                 params2[2] = courseName.getId();
 
+                List<String> groupOfPeople = new ArrayList<String>();
+                groupOfPeople.add(CUR_USERNAME);
+
+                Object params3[] = new Object[4];
+                params3[0] = "createGroup";
+                params3[1] = courseName.getId();
+                params3[2] = CUR_USERNAME;
+                params3[3] = groupOfPeople;
+
+
                 try {
                     boolean addCourseSuccess = new AddCourseMotto().execute(params).get();
                     boolean addUserCourseSuccess = new AddCourseMotto().execute(params2).get();
+                    new ChatMotto().execute(params3).get();
                     updateCurrentUser();
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -138,12 +150,18 @@ public class Courses extends Activity {
         courseField.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent coursePage = new Intent(Courses.this, CoursePage.class);
+                Intent coursePage = new Intent(Courses.this, ChatTab.class);
                 UserClasses selectedCourse = (UserClasses) parent.getItemAtPosition(position);
                 coursePage.putExtra("course", selectedCourse.getName().toString());
                 coursePage.putExtra("username", CUR_USERNAME);
 
                 startActivity(coursePage);
+           /*     Intent coursePage = new Intent(Courses.this, CoursePage.class);
+                UserClasses selectedCourse = (UserClasses) parent.getItemAtPosition(position);
+                coursePage.putExtra("course", selectedCourse.getName().toString());
+                coursePage.putExtra("username", CUR_USERNAME);
+
+                startActivity(coursePage);*/
             }
         });
         courseField.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -161,7 +179,7 @@ public class Courses extends Activity {
                         @Override
                         public void run() {
                             LayoutInflater inflater = getLayoutInflater();
-                            View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
+                            View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.custom_toast_layout));
                             TextView text = (TextView) layout.findViewById(R.id.textToShow);
                             text.setText("Removed " + selectedCourse.getName() + " ");
                             Toast toast = new Toast(getApplicationContext());
@@ -179,7 +197,6 @@ public class Courses extends Activity {
                 }
 
 
-
                 return true;
             }
         });
@@ -188,6 +205,7 @@ public class Courses extends Activity {
         /*final AutoCompleteTextView subjectTextView = (AutoCompleteTextView) findViewById(R.id.subjectComplete);
         subjectTextView.setAdapter(new SuggestionAdapter(this, R.layout.simple_dropdown_item_2line, R.id.text1));*/
     }
+
     public void showCourseText(String[][] testToShow) {
         ArrayList<UserClasses> uc = new ArrayList<UserClasses>();
 
@@ -197,7 +215,7 @@ public class Courses extends Activity {
             uc2 = new UserClasses(testToShow[i][0], testToShow[i][1]);
             uc.add(uc2);
         }
-        if(courseField == null) {
+        if (courseField == null) {
             Log.d("PROFILEFRAG", "courseField empty");
         }
         courseField.setAdapter(new MyAdapter(this, uc));
