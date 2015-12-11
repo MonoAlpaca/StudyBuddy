@@ -152,12 +152,11 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
                 js = new URL(createGroupBuilder());
                 URLConnection jc = js.openConnection();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
-
                 // iterate via "for loop"
                 for (int i = 0; i < groupMembers.size(); i++) {
                     js = new URL(addUserToGroupBuilder(groupMembers.get(i)));
-                    reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
                     jc = js.openConnection();
+                    reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
                 }
                 return null;
             }else if(token.equals("getGroupMessages")){

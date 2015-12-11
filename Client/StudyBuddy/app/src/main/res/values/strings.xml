@@ -26,19 +26,16 @@
 
     <string name="action_chat">Chat</string>
 
-    <string name="aboutText">\n StudyBuddy was created by Andy Chen, Abhijay Gupta, Joseph Miller,
-        Nathan Scott, and Zeb Wezensky for Prof. Dunsmore\'s Fall 2015 CS307 course.</string>
+    <string name="feedbackText">StudyBuddy creators Team 18 are eager to receive feedback from users.
+        Clicking the button below will open an email client of your choosing with our information already filled out.
+        Please feel free to share any and all feelings with us: good or bad we\'d love to know what you think!\n</string>
+    <string name="aboutText">StudyBuddy was created by Andy Chen, Abhijay Gupta, Joseph Miller,
+        Nathan Scott, and Zebediah Wezensky in Professor Dunsmore\'s Fall 2015 CS307 course.\n\nVersion 1.012.1.10\n</string>
     <string name="descriptionText">StudyBuddy is meant to match Purdue students to each
-        other by allowing users to choose courses they are enrolled in and matching them.
-        The matched students can then communicate to each other through a chat system and
-        meet up in real life to study together. \n</string>
+        other by allowing users to choose courses they are enrolled in and see other users in the course.
+        The matched students can then communicate through a chat system and
+        meet in real life to study and/or socialize.</string>
 
-    <string-array name="colorArray">
-        <item>Default</item>
-        <item>Purdue Gold</item>
-        <item>Purdue Black</item>
-        <item>Black and White</item>
-    </string-array>
     <string-array name="colorValues">
         <item>1</item>
         <item>2</item>
@@ -46,16 +43,5 @@
         <item>4</item>
     </string-array>
 
-    <string-array name="fillerArray">
-        <item>You: yo this app is amazing lol</item>
-        <item>A: i know brah this is literally the best thing ever</item>
-        <item>You: so youre in cs307?</item>
-        <item>A: yeah</item>
-        <item>You: wanna meet up at Lawson to discuss the project?</item>
-        <item>A: sure man</item>
-        <item>You: when you wanna be there?</item>
-        <item>A: 12:30?</item>
-        <item>You: sounds good see ya</item>
-    </string-array>
 
 </resources>

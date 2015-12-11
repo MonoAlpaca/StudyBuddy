@@ -24,8 +24,6 @@ public class Feedback extends Fragment {
     private Activity activity1 = this.getActivity();
 
     View rootView;
-    private EditText body;
-
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -43,15 +41,10 @@ public class Feedback extends Fragment {
                              Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_feedback, container, false);
-
-        body = (EditText) rootView.findViewById(R.id.feedback_text);
-
         Button sendBtn = (Button) rootView.findViewById(R.id.sendBtn);
         sendBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 sendEmail();
-                // after sending the email, clear the fields
-                body.setText("");
             }
         });
 
@@ -68,7 +61,6 @@ public class Feedback extends Fragment {
 
         email.putExtra(Intent.EXTRA_EMAIL, recipient);
         email.putExtra(Intent.EXTRA_SUBJECT, "Feedback for StudyBuddy");
-        email.putExtra(Intent.EXTRA_TEXT, body.getText().toString());
 
         try {
             // the user can choose the email client

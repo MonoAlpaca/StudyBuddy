@@ -11,7 +11,9 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -32,8 +34,11 @@ import ch.boye.httpclientandroidlib.impl.client.HttpClientBuilder;
 public class CASClient extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
-        TypefaceUtil.overrideFont(getApplicationContext(), "DEFAULT", "fonts/OpenSans-Light.ttf");
-        TypefaceUtil.overrideFont(getApplicationContext(), "DEFAULT_BOLD", "fonts/OpenSans-Bold.ttf");// font from assets: "assets/fonts/Roboto-Regular.ttf
+        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/OpenSans-Light.ttf");
+        TypefaceUtil.overrideFont(getApplicationContext(), "MONOSPACE", "fonts/OpenSans-Light.ttf");
+        TypefaceUtil.overrideFont(getApplicationContext(), "SANS", "fonts/OpenSans-Light.ttf");
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication);
         HttpClient httpClient = HttpClientBuilder.create().setRedirectStrategy(new DefaultRedirectStrategy()).build();
@@ -72,16 +77,28 @@ public class CASClient extends Activity {
                                                   } catch (CasAuthenticationException e) {
                                                       progressBar.setVisibility(View.GONE);
                                                       button.setVisibility(View.VISIBLE);
-                                                      Toast.makeText(CASClient.this, "Incorrect Credentials, Check Username and Password again", Toast.LENGTH_SHORT).show();
-                                                      // TODO Auto-generated catch block
+                                                      LayoutInflater inflater = getLayoutInflater();
+                                                      View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
+                                                      TextView text = (TextView) layout.findViewById(R.id.textToShow);
+                                                      text.setText("Invalid Purdue Career Account Credentials");
+                                                      Toast toast = new Toast(getApplicationContext());
+                                                      toast.setDuration(Toast.LENGTH_SHORT);
+                                                      toast.setView(layout);
+                                                      toast.show();
+
                                                       e.printStackTrace();
                                                   } catch (CasProtocolException e) {
                                                       progressBar.setVisibility(View.GONE);
                                                       button.setVisibility(View.VISIBLE);
-                                                      Toast.makeText(CASClient.this, "Network Error" + e.getMessage(), Toast.LENGTH_LONG).show();
+                                                      LayoutInflater inflater = getLayoutInflater();
+                                                      View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
+                                                      TextView text = (TextView) layout.findViewById(R.id.textToShow);
+                                                      text.setText("Network Error");
+                                                      Toast toast = new Toast(getApplicationContext());
+                                                      toast.setDuration(Toast.LENGTH_LONG);
+                                                      toast.setView(layout);
+                                                      toast.show();
 
-
-                                                      // TODO Auto-generated catch block
                                                       e.printStackTrace();
                                                   }
 

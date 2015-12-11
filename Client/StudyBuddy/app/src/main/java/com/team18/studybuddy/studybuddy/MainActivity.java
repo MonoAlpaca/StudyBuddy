@@ -9,6 +9,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -57,6 +60,7 @@ public class MainActivity extends ActionBarActivity
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     int count = 0;
+    int selected = 0;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -89,7 +93,6 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             CUR_USERNAME = extras.getString("Username");
@@ -114,7 +117,9 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout), CUR_USERNAME);
 
-
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
 
@@ -124,13 +129,11 @@ public class MainActivity extends ActionBarActivity
             LayoutInflater inflater = getLayoutInflater();
             View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
             TextView text = (TextView) layout.findViewById(R.id.textToShow);
-            text.setText("Press back again to logout ");
+            text.setText("Press back again to logout");
             Toast toast = new Toast(getApplicationContext());
             toast.setDuration(Toast.LENGTH_SHORT);
             toast.setView(layout);
             toast.show();
-            //Toast.makeText(MainActivity.this, "Press back one more time to logout", Toast.LENGTH_SHORT).show();
-
         }
         count++;
         if(count == 2){
@@ -149,6 +152,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+        selected = position;
         try {
             updateCurrentUser();
         } catch (ExecutionException e) {
@@ -247,12 +251,11 @@ public class MainActivity extends ActionBarActivity
                         LayoutInflater inflater = getLayoutInflater();
                         View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
                         TextView text = (TextView) layout.findViewById(R.id.textToShow);
-                        text.setText("Updated your bio! ");
+                        text.setText("Updated your bio!");
                         Toast toast = new Toast(getApplicationContext());
                         toast.setDuration(Toast.LENGTH_SHORT);
                         toast.setView(layout);
                         toast.show();
-                        //Toast.makeText(MainActivity.this, "Updated your bio!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }, 1000);
@@ -328,20 +331,14 @@ public class MainActivity extends ActionBarActivity
         }
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onResume() {
+        super.onResume();
+        if(selected == 1 || selected == 3 || selected == 6){
+                onNavigationDrawerItemSelected(0);
+        }else {
+            onNavigationDrawerItemSelected(selected);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**

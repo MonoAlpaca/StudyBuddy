@@ -22,8 +22,8 @@ import java.util.List;
 public class SuggestionAdapter extends BaseAdapter implements Filterable {
 
     protected static final String TAG = "SuggestionAdapter";
-    private List<SuggestGetSet> suggestions;
     Context mContext;
+    private List<SuggestGetSet> suggestions;
 
     public SuggestionAdapter(Context context, int resource, int textViewResourceId) {
         mContext = context;
@@ -52,8 +52,8 @@ public class SuggestionAdapter extends BaseAdapter implements Filterable {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.simple_dropdown_item_2line, parent, false);
         }
-        ((TextView) convertView.findViewById(R.id.text1)).setText(getItem(position).getId());
-        ((TextView) convertView.findViewById(R.id.text2)).setText(getItem(position).getName());
+        ((TextView) convertView.findViewById(R.id.text1)).setText("  " + getItem(position).getId());
+        ((TextView) convertView.findViewById(R.id.text2)).setText("  " + getItem(position).getName());
         return convertView;
     }
 
@@ -63,22 +63,22 @@ public class SuggestionAdapter extends BaseAdapter implements Filterable {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults filterResults = new FilterResults();
-                JsonParse jp=new JsonParse();
+                JsonParse jp = new JsonParse();
                 String constraintTemp;
                 if (constraint != null) {
                     // A class that queries a web API, parses the data and
                     // returns an ArrayList<GoEuroGetSet>
 
-                    List<SuggestGetSet> new_suggestions =jp.getParseJsonWCF(constraint.toString());
+                    List<SuggestGetSet> new_suggestions = jp.getParseJsonWCF(constraint.toString());
                     Log.d(TAG, constraint.toString());
                     suggestions.clear();
-                    for (int i=0;i<new_suggestions.size();i++) {
-                        if(JsonParse.isAlpha(constraint.toString())) {
+                    for (int i = 0; i < new_suggestions.size(); i++) {
+                        if (JsonParse.isAlpha(constraint.toString())) {
                             if (new_suggestions.get(i).getId().toLowerCase().contains(constraint.toString().toLowerCase())) {
                                 suggestions.add(new_suggestions.get(i));
                             }
-                        }else{
-                            constraintTemp =constraint.toString().replaceAll("[a-zA-Z]", "");
+                        } else {
+                            constraintTemp = constraint.toString().replaceAll("[a-zA-Z]", "");
                             if (new_suggestions.get(i).getId().toLowerCase().contains(constraintTemp.toLowerCase())) {
 
                                 suggestions.add(new_suggestions.get(i));

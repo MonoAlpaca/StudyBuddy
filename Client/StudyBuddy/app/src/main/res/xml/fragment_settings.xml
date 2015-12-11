@@ -21,6 +21,7 @@
             android:title="Block List"
             android:summary="Block users"
             android:positiveButtonText="Block"
+            android:textColor="@color/black"
             android:key="blockList"/>
 
         <Preference
@@ -28,9 +29,5 @@
             android:summary="Log out of current account"
             android:key="settingsLogout"/>
 
-        <Preference
-            android:title="Reset"
-            android:key="settingsReset"
-            android:summary="Reset all user data"/>
     </PreferenceCategory>
 </PreferenceScreen>
