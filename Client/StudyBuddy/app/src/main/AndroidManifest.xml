@@ -33,6 +33,18 @@
             android:label="@string/title_section4" >
         </activity>
         <activity
+            android:name=".ChatTab"
+            android:screenOrientation="portrait"
+            android:label="@string/title_section4"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".CourseNewsfeed"
+            android:screenOrientation="portrait"
+            android:label="@string/title_section4"
+            android:windowSoftInputMode="adjustPan"  >
+        </activity>
+        <activity
             android:name=".Courses"
             android:screenOrientation="portrait"
             android:label="Courses" >

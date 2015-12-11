@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -141,14 +142,7 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
         Log.d(TAG, "In Retrieve Motto");
         URL js = null;
         try {
-            if(token.equals("addMessage")) {
-                js = new URL(addBuilder());
-            }else if(token.equals("getMessages")) {
-                js = new URL(getBuilder());
-
-            }else if(token.equals("getChatList")) {
-                js = new URL(getChatBuilder());
-            }else if(token.equals("createGroup")) {
+            if(token.equals("createGroup")) {
                 js = new URL(createGroupBuilder());
                 URLConnection jc = js.openConnection();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
@@ -159,12 +153,38 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
                     reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
                 }
                 return null;
+            }
+        } catch (MalformedURLException e) {
+            Log.d(TAG, "Incorrect URL Builder");
+            e.printStackTrace();
+        } catch (IOException e) {
+            for (int i = 0; i < groupMembers.size(); i++) {
+                try {
+                    js = new URL(addUserToGroupBuilder(groupMembers.get(i)));
+                    URLConnection jc = js.openConnection();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
+                } catch (MalformedURLException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+            e.printStackTrace();
+        }
+        try {
+            if(token.equals("addMessage")) {
+                js = new URL(addBuilder());
+            }else if(token.equals("getMessages")) {
+                js = new URL(getBuilder());
+
+            }else if(token.equals("getChatList")) {
+                js = new URL(getChatBuilder());
             }else if(token.equals("getGroupMessages")){
                 js = new URL(getGroupChatBuilder());
             }else if(token.equals("getUserByCourse")){
                 js = new URL(getUserByCourseBuilder());
             }
-
 
             URLConnection jc = js.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
@@ -207,7 +227,9 @@ public class ChatMotto extends AsyncTask<Object, Void, ArrayList<Message>> {
             }
 
         }
-
+        if(token.equals("getGroupMessages") && params[2].equals("newsfeed")){
+            Collections.reverse(currentUser);
+        }
         return currentUser;
     }
 

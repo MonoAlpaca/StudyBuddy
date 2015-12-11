@@ -26,14 +26,6 @@
         android:src="@drawable/sb_gold"
         android:layout_gravity="right" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="415dp"
-        android:id="@+id/courseUser"
-        android:divider="@android:color/transparent"
-        android:layout_row="2"
-        android:layout_column="0" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,5 +50,14 @@
         android:layout_row="4"
         android:layout_column="0"
         android:layout_gravity="center" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="390dp"
+        android:id="@+id/courseUser"
+        android:divider="@android:color/transparent"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:layout_marginBottom="5dp" />
 </GridLayout>
 
