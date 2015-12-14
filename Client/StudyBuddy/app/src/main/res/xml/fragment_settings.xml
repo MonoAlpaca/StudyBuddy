@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Settings">
     <PreferenceCategory
-        android:title="Notification Settings"
-        android:key="settingsNotification">
+        android:key="settingsNotification"
+        android:title="Notification Settings">
 
         <CheckBoxPreference
-            android:title="Allow Notifications"
             android:defaultValue="true"
-            android:key="notificationSettings" />
+            android:key="notificationSettings"
+            android:title="Allow Notifications" />
+
 
     </PreferenceCategory>
 
+
     <PreferenceCategory
-        android:title="User Settings"
-        android:key="settingsUser">
+        android:key="settingsUser"
+        android:title="User Settings">
+
+        <ListPreference
+            android:entries="@array/theme"
+            android:entryValues="@array/theme"
+            android:key="themeSettings"
+            android:title="Theme" />
 
         <EditTextPreference
-            android:title="Block List"
-            android:summary="Block users"
+            android:key="blockList"
             android:positiveButtonText="Block"
+            android:summary="Block users"
             android:textColor="@color/black"
-            android:key="blockList"/>
+            android:title="Block List" />
 
         <Preference
-            android:title="Logout"
+            android:key="settingsLogout"
             android:summary="Log out of current account"
-            android:key="settingsLogout"/>
+            android:title="Logout" />
 
     </PreferenceCategory>
 </PreferenceScreen>

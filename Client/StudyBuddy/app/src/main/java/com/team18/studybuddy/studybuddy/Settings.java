@@ -1,10 +1,16 @@
 package com.team18.studybuddy.studybuddy;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -28,11 +34,36 @@ import java.util.concurrent.ExecutionException;
  */
 public class Settings extends PreferenceActivity {
     String CUR_USERNAME;
-
+    Context mContext;
     protected void onCreate(Bundle savedInstanceState) {
+        mContext = this;
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.fragment_settings);
 
+        final ListPreference themePreference = (ListPreference) findPreference("themeSettings");
+        themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Toast toast = Toast.makeText(mContext, "App will reset!", Toast.LENGTH_SHORT);
+                toast.show();
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+
+                        Intent mStartActivity = new Intent(mContext, CASClient.class);
+                        int mPendingIntentId = 123456;
+                        PendingIntent mPendingIntent = PendingIntent.getActivity(mContext, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                        AlarmManager mgr = (AlarmManager)mContext.getSystemService(Context.ALARM_SERVICE);
+                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                        System.exit(0);
+                    }
+                }, 1000);
+
+                return true;
+            }
+        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             CUR_USERNAME = extras.getString("username");

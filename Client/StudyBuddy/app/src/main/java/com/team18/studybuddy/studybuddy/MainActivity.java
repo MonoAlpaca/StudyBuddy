@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class MainActivity extends ActionBarActivity
+public  class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -55,6 +55,7 @@ public class MainActivity extends ActionBarActivity
     private String CUR_USERNAME;
     private String CUR_SERVICETAG;
     UserData currentUser;
+    public static Context mContext;
 
     ISetTextInFragment setProfile;
 
@@ -93,7 +94,27 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String themeName = pref.getString("themeSettings", "Purdue Black and Gold");
+        Log.d("FUCKINGBULLSHIT", "themeName: " + themeName);
+
+        if (themeName.equals("Default")) {
+            this.setTheme(R.style.BlackTheme);
+            Log.d("FUCKINGBULLSHIT", "themeName: " + themeName);
+
+        } else if (themeName.equals("Purdue Black and Gold")) {
+            this.setTheme(R.style.AppTheme);
+            Log.d("FUCKINGBULLSHIT", "themeName: " + themeName);
+
+        }
+
+        mContext = this;
+
         Bundle extras = getIntent().getExtras();
+
+
+
         if (extras != null) {
             CUR_USERNAME = extras.getString("Username");
             CUR_SERVICETAG = extras.getString("ServiceTag");
@@ -127,6 +148,7 @@ public class MainActivity extends ActionBarActivity
     public void onBackPressed() {
         if(count == 0){
             LayoutInflater inflater = getLayoutInflater();
+
             View layout = inflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
             TextView text = (TextView) layout.findViewById(R.id.textToShow);
             text.setText("Press back again to logout");
@@ -334,11 +356,23 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onResume() {
         super.onResume();
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String themeName = pref.getString("themeSettings", "Purdue Black and Gold");
+        if (themeName.equals("Default")) {
+            Log.d("FUCKINGBULLSHIT", "themeName: " + themeName);
+
+            this.setTheme(R.style.BlackTheme);
+        } else if (themeName.equals("Purdue Black and Gold")) {
+            Log.d("FUCKINGBULLSHIT", "themeName: " + themeName);
+            this.setTheme(R.style.AppTheme);
+        }
         if(selected == 1 || selected == 3 || selected == 6){
-                onNavigationDrawerItemSelected(0);
+            onNavigationDrawerItemSelected(0);
         }else {
             onNavigationDrawerItemSelected(selected);
         }
+
     }
 
     /**
